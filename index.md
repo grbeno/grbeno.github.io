@@ -4,7 +4,7 @@ layout: default
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
-[Link to another page](./dj_installation.md).
+[Link to another page](./pages/dj_installation.md).
 
 There should be whitespace between paragraphs.
 
