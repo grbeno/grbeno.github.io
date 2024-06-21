@@ -3,10 +3,11 @@ layout: default
 ---
 
 ### Features
-:clipboard: ` Custom User Model ` :raising_hand: ` Sign up ` :unlock: ` Sign in ` :key: ` JWT authentication ` :arrows_clockwise: ` Change password ` :white_check_mark: ` Reset password ` :x: ` Delete User `
+:clipboard: `Custom User Model` :raising_hand: `Sign up` :unlock: `Sign in` :key: `JWT authentication` :arrows_clockwise: `Change password` :white_check_mark: `Reset password` :x: `Delete User`
 
 ### Stack
-` Django ` ` Django REST framework ` ` ReactJS ` ` PostgreSQL ` ` Bootstrap ` ` CSS `
+`Django` 
+`Django REST framework` `ReactJS` `PostgreSQL` `Bootstrap` `CSS`
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
