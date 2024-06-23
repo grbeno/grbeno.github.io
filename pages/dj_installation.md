@@ -21,7 +21,7 @@ OS: **Windows 11 Pro 64bit**
     - pip/conda(for Anaconda/Miniconda environment)
     
 My choices are **python 3.10**, **VS Code** and **pip**.
-Although, I will use pipenv for Django web application development, because I also need to setup virtual environment.
+Although, I will use **pipenv** for Django web application development, because I also need to setup virtual environment.
 
 ### Pipenv
 
@@ -31,9 +31,11 @@ _Install globally_
 ```
 pip install pipenv
 ```
+_Change the directory according to the project path_
 ```
 cd <the_path_of_your_project_directory>
 ```
+_The installation command creates the Pipfile and Pipfile.lock with the dependencies and version infos_
 ```
 pipenv install  <dependencies>  
 ```
