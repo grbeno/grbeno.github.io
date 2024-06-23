@@ -9,13 +9,15 @@ OS: **Windows 11 Pro 64bit**
 
 ## Prerequisites
 
-*   #### Python
+*   **Python**
     - [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
     - Install [pyenv](https://pypi.org/project/pyenv/) if you want to use multiple python versions for your projects.
-*   #### IDE
+
+*   **IDE**
     -	Integrated development environment
     -	PyCharm, VS Code, Vim
-*   ####  Package manager
+
+*   **Package manager**
     - pip/conda(for Anaconda/Miniconda environment)
 
 My choices are **python 3.10**, **VS Code** and **pip**.
