@@ -11,14 +11,14 @@ OS: **Windows 11 Pro 64bit**
 
 *   **Python**
     - [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
-    - Install pyenv if you want to use multiple python versions for your projects.
-      
+    - Install pyenv if you want to use multiple python versions for your projects.<br />
+    
 *   **IDE**
     -	Integrated development environment
-    -	PyCharm, VS Code, Vim
-      
+    -	PyCharm, VS Code, Vim<br />
+    
 *   **Package and dependency manager**
-    - pip/conda(for Anaconda/Miniconda environment)
+    - pip/conda(for Anaconda/Miniconda environment)<br />
 
 My choices are **python 3.10**, **VS Code** and **pip**.
 Although, I will use pipenv for Django web application development, because I also need to setup virtual environment.
@@ -54,7 +54,7 @@ Alternativelly, you can use venv to setup virtual enviroment.
     ...
 
     _config/settings.py_
-    ```py
+    ```python
     import dj_database_url
                     
     # DB configuered in .env file /DATABASE_URL/ -> dj_database_url.config() returns a dictionary
