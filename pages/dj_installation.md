@@ -79,17 +79,17 @@ You can use >, <, <= or >= to specify the version.
 
     If your choice is the same, then you should make the next steps:
 	
-    **Download & install postgres**
-	https://www.postgresql.org/download/windows/
+    **Download & install postgres:**
+     [https://www.postgresql.org/download/windows/](https://www.postgresql.org/download/windows/)
 
-    **Create database**
+    **Create database locally**
     ```
     psql -U postgres 
     ```
     ```
     CREATE DATABASE <db_name> WITH OWNER postgres; 
     ```
-    _Install dj_database_url_
+    _Install dj_database_url._
     ```
     pipenv install dj_database_url
     ```
@@ -98,7 +98,7 @@ You can use >, <, <= or >= to specify the version.
     ```
     pipenv install environs
     ```
-    _The env file should look like something similar_
+    _The env file in the project directory should look something like this._
     ```
     # .env
 
@@ -120,7 +120,7 @@ You can use >, <, <= or >= to specify the version.
     DATABASES = {'default': db_config}
     ```
     
-    Finally, you can migrate the datas into the database.
+    Finally, you can migrate the data into the database.
     ```
     python manage.py makemigrations
     ```
