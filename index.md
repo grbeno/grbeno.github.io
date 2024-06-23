@@ -2,7 +2,6 @@
 layout: default
 ---
 
-## Content
 `Installation` `Deployment` `Views` `Models` `Urls` `Templates` ...
 
 ## [Installation and setting up](./pages/dj_installation.md)
