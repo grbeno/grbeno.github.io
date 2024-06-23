@@ -1,10 +1,12 @@
+# Deploying Django
+
 ## Preparation
 *	requirements.txt
 *	git, github
 *	collectstatic
 *	settings.py
     - ALLOWED_HOST, STATIC vars, CSRF_TRUSTED_ORIGINS ...
-* ... 
+* . . . 
 
 ## Deploying to Railway
  
@@ -32,3 +34,6 @@
 - Overview > heroku postgres > settings > database credentials
 - Copy URI to DATABASE_URL variable in config vars
 - ``` $ heroku run python manage.py migrate ```
+
+## Docker-compose
+ - ...
