@@ -2,35 +2,32 @@
 layout: default
 ---
 
-### Django
-`Installation` `Deployment` `Views` `Templates` `Urls` `Models` ...
+## Content
+`Installation` `Deployment` `Views` `Models` `Urls` `Templates` ...
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
-
-[Link to another page](./pages/dj_installation.md).
-
-There should be whitespace between paragraphs.
-
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
-
-# Header 1
+## [Installation and setting up](./pages/dj_installation.md)
 
 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
-## Header 2
+## [Deployment](./pages/dj_installation.md)
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
-### Header 3
+## [Views](./pages/dj_installation.md)
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+
+## [Models](./pages/dj_installation.md)
+
+This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+
+## [Urls](./pages/dj_installation.md)
+
+This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+
+## [Templates](./pages/dj_installation.md)
+
+This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+
  
  
