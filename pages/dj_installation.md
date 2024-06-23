@@ -55,7 +55,7 @@ If you want to install a specific version of Django, just use the version number
 ```
 pipenv install django==5.0.1
 ```
-You can use >, <, =< or >= to specify the version.
+You can use >, <, <= or >= to specify the version.
 
 ## Setting up Django
 1.  **Create Project**
@@ -73,15 +73,59 @@ You can use >, <, =< or >= to specify the version.
     ```
     You should see a django „congratulations” page in the browser at: http://127.0.0.1:8000/ or http://localhost:8000/
 3.  **Setting up Database**  
-    ...
+    You can make a decision to continue the default light-weight database engine sqlite3 or chose a larger one such as PostgreSQL, MySQL, MariaDB, Oracle.
 
+    My choice is PostgreSQL.
+
+    If your choice is the same, then you should make the next steps:
+	
+    **Download & install postgres**
+	https://www.postgresql.org/download/windows/
+
+    **Create database**
+    ```
+    psql -U postgres 
+    ```
+    ```
+    CREATE DATABASE <db_name> WITH OWNER postgres; 
+    ```
+    _Install dj_database_url_
+    ```
+    pipenv install dj_database_url
+    ```
+    You have to set the environment variables for the database!
+    My choice for this purpose is [environs](https://pypi.org/project/environs/).
+    ```
+    pipenv install environs
+    ```
+    _The env file should look like something similar_
+    ```
+    # .env
+
+    DATABASE_URL=postgresql://postgres:<password>@localhost:5432/<db_name>
+    SSL_REQUIRE=False
+    DB_PASSWORD=<password>
+
+    ```
     _config/settings.py_
     ```python
     import dj_database_url
+    from environs import Env
+
+    env = Env()
+    env.read_env()
                     
     # DB configuered in .env file /DATABASE_URL/ -> dj_database_url.config() returns a dictionary
     db_config = dj_database_url.config(conn_max_age=600, ssl_require=env.bool('SSL_REQUIRE', default=True))
     DATABASES = {'default': db_config}
+    ```
+    
+    Finally, you can migrate the datas into the database.
+    ```
+    python manage.py makemigrations
+    ```
+    ```
+    python manage.py migrate
     ```
  
  
