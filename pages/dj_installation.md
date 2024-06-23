@@ -9,16 +9,16 @@ OS: **Windows 11 Pro 64bit**
 
 ## Prerequisites
 
-*   **Python**
-    - [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
-    - Install [pyenv](https://pypi.org/project/pyenv/) if you want to use multiple python versions for your projects.
+**Python**
+*    [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
+*    Install [pyenv](https://pypi.org/project/pyenv/) if you want to use multiple python versions for your projects.
 
-*   **IDE**
-    -	Integrated development environment
-    -	PyCharm, VS Code, Vim
+**IDE**
+*    Integrated development environment
+*    PyCharm, VS Code, Vim
 
-*   **Package manager**
-    - pip/conda(for Anaconda/Miniconda environment)
+**Package manager**
+*    pip/conda(for Anaconda/Miniconda environment)
 
 My choices are **python 3.10**, **VS Code** and **pip**.
 Although, I will use pipenv for Django web application development, because I also need to setup virtual environment.
