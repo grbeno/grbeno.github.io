@@ -8,6 +8,7 @@
 	    ```
 *	git, github
     - Create git and github repository
+    - [https://docs.github.com/en/repositories/creating](https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories)
 *	collectstatic
     - Collect static files before deploying
       ```
@@ -28,17 +29,26 @@
 ## Deploying to Railway
  
  - Open Railway UI
- - Add new project
- - Add postgres as database
- - Set variables: SECRET_KEY, DATABASE_URL
+ 	- Add new project
+ 	- Add postgres as database
+ 	- Set variables: SECRET_KEY, DATABASE_URL
  - Go to settings
- - Generate domain
- - Deploy > custom start command > ``` gunicorn.wsgi --log file - ```
- - Build > custom build command > ``` CI=false react-scripts build ```
+ 	- Generate domain
+ 	- Deploy > custom start command
+          ```
+    		gunicorn.wsgi --log file -
+     		```
+ 	- Build > custom build command
+    	```
+   	        CI=false react-scripts build
+   		```
  - Set DOMAIN_NAME variable then (config/settings.py):
    - Add the domain to ALLOWED_HOST
    - Add url to CSRF_TRUSTED_ORIGINS
-- Create a nixpacks.toml file  > ``` providers = ["node", "python"] ```
+- Create a nixpacks.toml file
+	```
+	providers = ["node", "python"]
+ 	```
 
 ## Deploying to Heroku
 
