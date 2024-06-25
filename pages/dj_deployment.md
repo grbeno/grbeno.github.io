@@ -15,7 +15,7 @@
       python manage.py collectstatic --noinput
       ```
 *	config/settings.py
-    - Add the url to the `ALLOWED_HOST` (<site_name>up.railway.app e.g.)
+    - Add the url to the `ALLOWED_HOST` (<mysitename.up.railway.app e.g.)
 *   Gunicorn
     - [https://pypi.org/project/gunicorn/](https://pypi.org/project/gunicorn/)
         ```
