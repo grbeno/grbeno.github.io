@@ -28,24 +28,24 @@
 
 ## Deploying to Railway
  
- - Open Railway UI
- 	- Add new project
- 	- Add postgres as database
- 	- Set variables: SECRET_KEY, DATABASE_URL
- - Go to settings
- 	- Generate domain
- 	- Deploy > custom start command
-          ```
-    		gunicorn.wsgi --log file -
-     		```
+* Open Railway UI
+	- Add new project
+	- Add postgres as database
+	- Set variables: SECRET_KEY, DATABASE_URL
+* Go to settings
+	- Generate domain
+	- Deploy > custom start command
+		```
+  		gunicorn.wsgi --log file -
+		```
  	- Build > custom build command
-    	```
-   	        CI=false react-scripts build
-   		```
- - Set DOMAIN_NAME variable then (config/settings.py):
-   - Add the domain to ALLOWED_HOST
-   - Add url to CSRF_TRUSTED_ORIGINS
-- Create a nixpacks.toml file
+		```
+		CI=false react-scripts build
+		```
+* Set DOMAIN_NAME variable then (config/settings.py):
+	- Add the domain to ALLOWED_HOST
+	- Add url to CSRF_TRUSTED_ORIGINS
+* Create a nixpacks.toml file
 	```
 	providers = ["node", "python"]
  	```
