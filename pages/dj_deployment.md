@@ -15,7 +15,7 @@
       python manage.py collectstatic --noinput
       ```
 *	config/settings.py
-    - Add the url to the ALLOWED_HOST (<site_name>up.railway.app e.g.)
+    - Add the url to the `ALLOWED_HOST` (<site_name>up.railway.app e.g.)
 *   Gunicorn
     - [https://pypi.org/project/gunicorn/](https://pypi.org/project/gunicorn/)
         ```
@@ -31,36 +31,46 @@
 * Open Railway UI
 	- Add new project
 	- Add postgres as database
-	- Set variables: SECRET_KEY, DATABASE_URL
+	- Set variables: `SECRET_KEY` `DATABASE_URL`
 * Go to settings
 	- Generate domain
-	- Deploy > custom start command
+	- Deploy: custom start command
 		```
   		gunicorn.wsgi --log file -
 		```
- 	- Build > custom build command
+	- Build: custom build command
 		```
 		CI=false react-scripts build
 		```
-* Set DOMAIN_NAME variable then (config/settings.py):
-	- Add the domain to ALLOWED_HOST
-	- Add url to CSRF_TRUSTED_ORIGINS
+* Set `DOMAIN_NAME` variable then (config/settings.py):
+	- Add the domain to `ALLOWED_HOST`
+	- Add url to `CSRF_TRUSTED_ORIGINS`
 * Create a nixpacks.toml file
-	```
+  	```
 	providers = ["node", "python"]
  	```
 
 ## Deploying to Heroku
 
-- Open Heroku UI
-- ``` $ cd <project-name> ```
-- ``` $ heroku login ```
-- ``` $ heroku git:remote <project-name> ```
-- If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
-- ``` $ git push heroku main ```
-- Overview > heroku postgres > settings > database credentials
-- Copy URI to DATABASE_URL variable in config vars
-- ``` $ heroku run python manage.py migrate ```
+* Open Heroku UI
+	```
+	cd <project-name>
+	```
+	```
+	heroku login
+	```
+	```
+	heroku git:remote <project-name>
+	```
+* If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
+	```
+	git push heroku main
+	```
+* Overview > heroku postgres > settings > database credentials
+* Copy URI to `DATABASE_URL` variable in config vars
+	```
+	heroku run python manage.py migrate
+	```
 
 ## Docker-compose
  - ...
