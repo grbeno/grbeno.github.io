@@ -46,14 +46,14 @@
 	- Add the domain to `ALLOWED_HOST`
 	- Add url to `CSRF_TRUSTED_ORIGINS`
 * Create a nixpacks.toml file
-	- If you want to deploy a js front-end library with node (ReactJS e.g.)
-	  	```
+	- If you want to deploy also a JS front-end library with node (ReactJS e.g.)
+		```
 		providers = ["node", "python"]
-	 	```
+		```
 
 ## Deploying to Heroku
 
-#### Open Heroku UI
+Open Heroku UI
 ```
 cd <project-name>
 ```
@@ -63,12 +63,11 @@ heroku login
 ```
 heroku git:remote <project-name>
 ```
-#### If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
+If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
 ```
 git push heroku main
 ```
-#### Overview > heroku postgres > settings > database credentials
-#### Copy URI to `DATABASE_URL` variable in config vars
+Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
 ```
 heroku run python manage.py migrate
 ```
