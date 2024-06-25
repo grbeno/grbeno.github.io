@@ -2,11 +2,28 @@
 
 ## Preparation
 *	requirements.txt
+    - Create a text file for listing dependencies
+	    ```
+        pip freeze > requirements.txt
+	    ```
 *	git, github
+    - Create git and github repository
 *	collectstatic
-*	settings.py
-    - ALLOWED_HOST, STATIC vars, CSRF_TRUSTED_ORIGINS ...
-* . . . 
+    - Collect static files before deploying
+      ```
+      python manage.py collectstatic --noinput
+      ```
+*	config/settings.py
+    - Add the url to the ALLOWED_HOST (<site_name>up.railway.app e.g.)
+*   Gunicorn
+    - [https://pypi.org/project/gunicorn/](https://pypi.org/project/gunicorn/)
+        ```
+        pipenv install gunicorn
+        ```
+    - _Procfile_
+        ```
+        web: gunicorn config.wsgi --log-file
+        ```
 
 ## Deploying to Railway
  
