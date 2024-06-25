@@ -88,7 +88,10 @@ You can use >, <, <= or >= to specify the version.
     ```
     CREATE DATABASE <db_name> WITH OWNER postgres; 
     ```
-    _Install dj_database_url._
+    _Install psycopg2 & dj_database_url._
+    ```
+    pipenv install psycopg2
+    ```
     ```
     pipenv install dj_database_url
     ```
