@@ -62,16 +62,69 @@ You can use >, <, <= or >= to specify the version.
     django-admin startproject config .
     ```
     This command creates a Django project in the actual directory and a config subdirectory inside it with the files `settings.py` `urls.py` `asgi.py` `wsgi.py`.
-2.  **Create app**
+    
+    #### Check if the project works well on localhost.
+    ```
+    python manage.py runserver
+    ``` 
+    You should see a django „congratulations” page in the browser at: http://127.0.0.1:8000/ or http://localhost:8000/
+3.  **Create helloworld app**
     ```
     python manage.py startapp <app_name> 
     ```
-    Check if the project works well on localhost!
+    Add the app name 'helloworld' to the `INSTALLED_APPS`.
+    _config/settings.py_
+    ```python
+    INSTALLED_APPS = [
+	    'django.contrib.admin',
+	    'django.contrib.auth',
+	    'django.contrib.contenttypes',
+	    'django.contrib.sessions',
+	    'django.contrib.messages',
+	    'django.contrib.staticfiles',
+	    'helloworld',
+    ]
+    
+    ```
+    Add the helloworld app urls to the config urls.
+    _config/urls.py_
+    ```python
+    from django.contrib import admin
+    from django.urls import path, re_path, include
+
+    urlpatterns = [
+    	path('admin/', admin.site.urls),
+    	# helloworld app
+    	path("", include("helloworld.urls")),
+    ]
+    
+    ```
+    Create urls.py in the app's directory.
+    _helloworld/urls.py_
+    ```python
+    from .views import helloworld
+    from django.urls import path
+
+    urlpatterns = [
+    	path('', home_page_view, name="home"),
+    ]
+    
+    ```
+    Create helloworld view in the views.py.
+    _helloworld/views.py_
+    ```python
+    from django.http import HttpResponse
+    
+    def home_page_view(request):
+        return HttpResponse("Hello World!")
+
+    ```
+    Run the app on localhost!
     ```
     python manage.py runserver
-    ```
-    You should see a django „congratulations” page in the browser at: http://127.0.0.1:8000/ or http://localhost:8000/
-3.  **Setting up Database**  
+    ``` 
+    You should see a django "Hello World" on a white page at: http://127.0.0.1:8000/ or http://localhost:8000/
+4.  **Setting up Database**  
     You can make a decision to continue the default light-weight database engine sqlite3 or chose a larger one such as PostgreSQL, MySQL, MariaDB, Oracle.
 
     My choice is PostgreSQL.
@@ -120,6 +173,7 @@ You can use >, <, <= or >= to specify the version.
     # DB configuered in .env file /DATABASE_URL/ -> dj_database_url.config() returns a dictionary
     db_config = dj_database_url.config(conn_max_age=600, ssl_require=env.bool('SSL_REQUIRE', default=True))
     DATABASES = {'default': db_config}
+    
     ```
     
     Finally, you can migrate the data into the database.
