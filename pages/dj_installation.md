@@ -70,11 +70,13 @@ You can use >, <, <= or >= to specify the version.
     You should see a django „congratulations” page in the browser at: http://127.0.0.1:8000/ or http://localhost:8000/
 3.  **Create helloworld app**
     ```
-    python manage.py startapp <app_name> 
+    python manage.py startapp helloworld 
     ```
     Add the app name 'helloworld' to the `INSTALLED_APPS`.
-    _config/settings.py_
+    
     ```python
+    # config/settings.py
+
     INSTALLED_APPS = [
 	    'django.contrib.admin',
 	    'django.contrib.auth',
@@ -86,33 +88,42 @@ You can use >, <, <= or >= to specify the version.
     ]
     
     ```
-    Add the helloworld app urls to the config urls.
-    _config/urls.py_
+    Add the helloworld/urls to the config/urls.
+    
     ```python
+    # config/urls.py
+    
     from django.contrib import admin
     from django.urls import path, re_path, include
 
     urlpatterns = [
     	path('admin/', admin.site.urls),
+
     	# helloworld app
     	path("", include("helloworld.urls")),
+
     ]
     
     ```
-    Create urls.py in the app's directory.
-    _helloworld/urls.py_
+    Create urls.py in the helloworld app's directory.
+    
     ```python
-    from .views import helloworld
+    # helloworld/urls.py
+    
+    from .views import home_page_view
     from django.urls import path
 
     urlpatterns = [
     	path('', home_page_view, name="home"),
+
     ]
     
     ```
     Create helloworld view in the views.py.
-    _helloworld/views.py_
+    
     ```python
+    # helloworld/views.py
+
     from django.http import HttpResponse
     
     def home_page_view(request):
