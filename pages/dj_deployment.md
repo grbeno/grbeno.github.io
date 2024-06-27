@@ -38,10 +38,6 @@
 		```
   		gunicorn.wsgi --log file -
 		```
-	- Build: custom build command
-		```
-		CI=false react-scripts build
-		```
 * Set `DOMAIN_NAME` variable then (config/settings.py):
 	- Add the domain to `ALLOWED_HOST`
 	- Add url to `CSRF_TRUSTED_ORIGINS`
