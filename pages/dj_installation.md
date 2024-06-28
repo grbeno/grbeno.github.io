@@ -135,7 +135,11 @@ You can use >, <, <= or >= to specify the version.
     python manage.py runserver
     ``` 
     You should see a django "Hello World" on a white page at: http://127.0.0.1:8000/ or http://localhost:8000/
-4.  **Setting up Database**  
+    
+    We walked through the installation and setup of a basic Django application, providing users with all the necessary steps to get started. 
+    If you wish to implement a custom user model or change your database from the default SQLite3 to PostgreSQL, make sure to read the second section of the post.
+    
+5.  **Setting up Database**  
     You can make a decision to continue the default light-weight database engine sqlite3 or chose a larger one such as PostgreSQL, MySQL, MariaDB, Oracle.
 
     My choice is PostgreSQL.
