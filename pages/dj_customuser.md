@@ -2,6 +2,10 @@
 layout: default
 ---
 
+## Custom user model
+
+Sooner or later, the developer needs to customize the user model, so it is highly recommended to use a custom user model. Until the custom user model is done, running the migrate command causes problems. As the documentation says, "Changing AUTH_USER_MODEL after you’ve created database tables is significantly more difficult since it affects foreign keys and many-to-many relationships, for example."
+
 Create a new app for handling custom user model and authentication.
 ```
 python manage.py startapp accounts
@@ -38,6 +42,7 @@ AUTH_USER_MODEL = 'accounts.User'
 ```
 Now, you can migrate the data to the database.
 ```
+python manage.py makemigrations accounts
 python manage.py migrate
 ```
 Update the user forms (you can find at http://127.0.0.1:8000/admin) with the custom user model.
