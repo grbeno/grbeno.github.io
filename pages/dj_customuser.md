@@ -78,7 +78,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 
-CustomUser = get_user_model()
+User = get_user_model()
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
@@ -86,7 +86,7 @@ class CustomUserAdmin(UserAdmin):
     model = User
     list_display = [ 'id', 'username', 'email', 'is_superuser', 'is_active', 'last_login',]
 
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(User, CustomUserAdmin)
 
 ```
 Create superuser account to log in and handle the Django admin interface.
