@@ -2,10 +2,11 @@
 layout: default
 ---
 
+Create a new app for handling custom user model and authentication.
 ```
 python manage.py startapp accounts
 ```
-
+Custom User class inherits the functionality of AbstractUser class. It can be override or extend later if needed.
 ```python
 # accounts/models.py
 
@@ -15,7 +16,7 @@ class User(AbstractUser):
     pass
 
 ```
-
+Update the `INSTALLED_APPS` with the new accounts app and add the custom user model to `AUTH_USER_MODEL`.
 ```python
 # config/settings.py
 
@@ -35,11 +36,11 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'accounts.User'
 
 ```
-
+Now, you can migrate the data to the database.
 ```
 python manage.py migrate
 ```
-
+Update the user forms (you can find at http://127.0.0.1:8000/admin) with the custom user model.
 ```python
 # accounts/forms.py
 
@@ -61,7 +62,7 @@ class CustomUserChangeForm(UserChangeForm):
         fields = ('email', 'username',)
 
 ```
-
+Customize and register the custom user model in admin.py.
 ```python
 # accounts/admin.py
 
@@ -78,12 +79,13 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = User
-    list_display = [ 'id', 'username', 'is_staff', 'is_superuser', 'is_active', 'last_login',]
+    list_display = [ 'id', 'username', 'email', 'is_superuser', 'is_active', 'last_login',]
 
 admin.site.register(CustomUser, CustomUserAdmin)
 
 ```
-
+Create superuser account to log in and handle the Django admin interface.
 ```
 python manage.py createsuperuser
 ```
+This tutorial based on: [https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#substituting-a-custom-user-model](https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#substituting-a-custom-user-model)
