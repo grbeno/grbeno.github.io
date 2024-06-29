@@ -2,9 +2,13 @@
 layout: default
 ---
 
-`Installation` `Deployment` `Views` `Models` `Urls` `Templates` ...
+`Installation` `Custom User Model` `Deployment` `Views` `Models` `Urls` `Templates` ...
 
 ## [Installation and setting up](./pages/dj_installation.md)
+
+This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+
+## [Custom User Model](./pages/dj_customuser.md)
 
 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
