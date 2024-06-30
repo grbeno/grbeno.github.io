@@ -69,4 +69,4 @@ heroku run python manage.py migrate
 ```
 
 ## Docker-compose
- - ...
+[https://github.com/grbeno/django-postgres-docker](https://github.com/grbeno/django-postgres-docker)
