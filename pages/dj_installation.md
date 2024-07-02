@@ -193,7 +193,8 @@ You can use >, <, <= or >= to specify the version.
     
     Finally, you can migrate the data into the database.
 
-    `WARNING!` **Before you go any further, it is worth considering the following:** [Custom user model](https://grbeno.github.io/pages/dj_customuser.html)
+    `WARNING!` **Before you go any further, it is worth considering the following:**\
+    [Custom user model](https://grbeno.github.io/pages/dj_customuser.html)
     
     ```
     python manage.py migrate
