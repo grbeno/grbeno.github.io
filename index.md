@@ -12,6 +12,13 @@ Getting started with Django, a popular Python web framework, is essential for de
 `Prerequisites` `Pipenv` `Installation` `Setting up` `Hello World` `Database`
 
 ---
+## [Adding React frontend to Django backend](./pages/dj_installation.md)
+
+Getting started with Django, a popular Python web framework, is essential for developing high-performance web applications.\
+\
+`Prerequisites` `Pipenv` `Installation` `Setting up` `Hello World` `Database` `React`
+
+---
 ## [Custom User Model](./pages/dj_customuser.md)
 
 Creating a custom user model in Django is a crucial step for developers who need to extend the default user functionalities to fit their application's unique requirements.\
