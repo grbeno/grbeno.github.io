@@ -12,7 +12,7 @@ Getting started with Django, a popular Python web framework, is essential for de
 `Prerequisites` `Pipenv` `Installation` `Setting up` `Hello World` `Database`
 
 ---
-## [Adding React frontend to Django backend](./pages/dj_installation.md)
+## [Adding React frontend to Django backend]()
 
 Getting started with Django, a popular Python web framework, is essential for developing high-performance web applications.\
 \
@@ -33,22 +33,22 @@ Deploying a Django application can seem daunting, but it's an essential step to 
 `Preparation` `Railway` `Heroku` `Docker-compose`
 
 ---
-## [Views](./pages/dj_installation.md)
+## [Views]()
 
 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
 ---
-## [Models](./pages/dj_installation.md)
+## [Models]()
 
 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
 ---
-## [Urls](./pages/dj_installation.md)
+## [Urls]()
 
 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
 ---
-## [Templates](./pages/dj_installation.md)
+## [Templates]()
 
 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
