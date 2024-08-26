@@ -7,7 +7,7 @@ layout: default
 OS: **Windows 11 Pro 64bit**
 
 ### First steps
-Install node on Windows OS using [nvm-windows](https://github.com/coreybutler/nvm-windows).
+Install node on Windows OS using [nvm-windows](https://github.com/coreybutler/nvm-windows/releases).
 
 __For nvm-windows:__ After clicking on the link, download the nvm-setup.zip directory (Assets), then unzip it and run the installer!
 
@@ -27,7 +27,7 @@ nvm list
 ```
 nvm use newest
 ```
-Learn more from the official documentation linked above.
+Learn more from the [documentation of nvm-windows](https://github.com/coreybutler/nvm-windows).
 ### Initialize React added to the Django project
 Stay in the Django project directory and cerate the new directory 'frontend' (or what you want) for React files.
 ```
