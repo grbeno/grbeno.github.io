@@ -68,5 +68,37 @@ Overview > heroku postgres > settings > database credentials. Then copy URI to `
 heroku run python manage.py migrate
 ```
 
-## Docker-compose
+## Docker
+
+__Sign up/in Docker Hub__ \
+[https://app.docker.com/signup](https://app.docker.com/signup)
+
+__Download and install Docker Desktop:__ 
+[https://docs.docker.com/desktop/install/windows-install/](https://docs.docker.com/desktop/install/windows-install/)
+
+Check if the installation is successful, then run the 'hello world' image.
+```
+docker --version
+```
+```
+docker run hello-world
+```
+Build docker-compose
+```
+docker-compose build
+```
+Start services based on docker-compose.yml
+```
+docker-compose up -d
+```
+To turn off the services
+```
+docker-compose down
+```
+To run Django commands
+```
+docker-compose exec <django_service_name> python manage.py <command>
+```
+
+__Use this repo's README for more information about the Dockerfile and docker-compose.yml.__\
 [https://github.com/grbeno/django-postgres-docker](https://github.com/grbeno/django-postgres-docker)
