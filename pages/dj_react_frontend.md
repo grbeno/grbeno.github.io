@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# Adding React frontend to Django backend
+# Adding React to Django
 
 OS: **Windows 11 Pro 64bit**
 
