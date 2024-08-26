@@ -12,7 +12,7 @@ Getting started with Django, a popular Python web framework, is essential for de
 `Prerequisites` `Pipenv` `Installation` `Setting up` `Hello World` `Database`
 
 ---
-## [Adding React frontend to Django backend](./dj_react_frontend.md)
+## [Adding React frontend to Django backend](./pages/dj_react_frontend.md)
 
 Getting started with Django, a popular Python web framework, is essential for developing high-performance web applications.\
 \
