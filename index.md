@@ -19,7 +19,7 @@ Creating a custom user model in Django is a crucial step for developers who need
 `Models` `migration` `settings.py` `forms.py` `admin.py`
 
 ---
-## [Adding React frontend to Django backend](./pages/dj_react_frontend.md)
+## [Adding React to Django](./pages/dj_react_frontend.md)
 
  This combination offers an improved user experience compared to traditional Django templates, allowing for smoother interactions and a more modern web application feel.\
 \
