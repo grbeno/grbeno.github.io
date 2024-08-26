@@ -1,6 +1,6 @@
 # Deploying Django
 
-## Preparation
+### Preparation
 *	requirements.txt
     - Create a text file for listing dependencies
 	    ```
@@ -26,7 +26,7 @@
         web: gunicorn config.wsgi --log-file
         ```
 
-## Deploying to Railway
+### Deploying to Railway
  
 * Open Railway UI
 	- Add new project
@@ -47,7 +47,7 @@
 		providers = ["node", "python"]
 		```
 
-## Deploying to Heroku
+### Deploying to Heroku
 
 Open Heroku UI
 ```
@@ -68,7 +68,7 @@ Overview > heroku postgres > settings > database credentials. Then copy URI to `
 heroku run python manage.py migrate
 ```
 
-## Docker
+### Docker
 
 __Sign up/in Docker Hub__ \
 [https://app.docker.com/signup](https://app.docker.com/signup)

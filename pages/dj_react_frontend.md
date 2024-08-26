@@ -128,6 +128,8 @@ frontend:
       - backend
 ...
 ```
+__More about Docker [here](https://grbeno.github.io/pages/dj_deployment.html).__
+
 ### Github
 In order for the frontend directory to be accessible in the project's GitHub repository, the following steps need to be taken.
 
