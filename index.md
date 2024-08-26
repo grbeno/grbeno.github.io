@@ -12,18 +12,18 @@ Getting started with Django, a popular Python web framework, is essential for de
 `Prerequisites` `Pipenv` `Installation` `Setting up` `Hello World` `Database`
 
 ---
-## [Adding React frontend to Django backend](./pages/dj_react_frontend.md)
-
- This combination offers an improved user experience compared to traditional Django templates, allowing for smoother interactions and a more modern web application feel.\
-\
-`Node` `React` `Staticfiles` `Setting up` `Hello World` `Docker` `GitHub`
-
----
 ## [Custom User Model](./pages/dj_customuser.md)
 
 Creating a custom user model in Django is a crucial step for developers who need to extend the default user functionalities to fit their application's unique requirements.\
 \
 `Models` `migration` `settings.py` `forms.py` `admin.py`
+
+---
+## [Adding React frontend to Django backend](./pages/dj_react_frontend.md)
+
+ This combination offers an improved user experience compared to traditional Django templates, allowing for smoother interactions and a more modern web application feel.\
+\
+`Node` `React` `Staticfiles` `Setting up` `Hello World` `Docker` `GitHub`
 
 ---
 ## [Deployment](./pages/dj_deployment.md)
