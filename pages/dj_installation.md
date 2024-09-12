@@ -77,7 +77,7 @@ You can use >, <, <= or >= to specify the version
     ```
     django-admin startproject config .
     ```
-    This command creates a Django project in the actual directory and a config subdirectory inside it with the files `settings.py` `urls.py` `asgi.py` `wsgi.py`.
+    This command creates a Django project in the current directory and a config subdirectory inside it with the files `settings.py` `urls.py` `asgi.py` `wsgi.py`.
     
     #### Check if the project works well on localhost
     ```
@@ -110,7 +110,7 @@ You can use >, <, <= or >= to specify the version
     # config/urls.py
     
     from django.contrib import admin
-    from django.urls import path, re_path, include
+    from django.urls import path, include
 
     urlpatterns = [
     	path('admin/', admin.site.urls),
@@ -119,8 +119,19 @@ You can use >, <, <= or >= to specify the version
     	path("", include("helloworld.urls")),
 
     ]
-    
     ```
+    Create helloworld view in the views.py.
+    
+    ```python
+    # helloworld/views.py
+
+    from django.http import HttpResponse
+    
+    def home_page_view(request):
+        return HttpResponse("Hello World!")
+
+    ```
+    
     Create urls.py in the helloworld app's directory.
     
     ```python
@@ -134,17 +145,6 @@ You can use >, <, <= or >= to specify the version
 
     ]
     
-    ```
-    Create helloworld view in the views.py.
-    
-    ```python
-    # helloworld/views.py
-
-    from django.http import HttpResponse
-    
-    def home_page_view(request):
-        return HttpResponse("Hello World!")
-
     ```
     Run the app on localhost!
     ```
