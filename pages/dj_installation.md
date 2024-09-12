@@ -46,7 +46,8 @@ pipenv shell
 
 [https://docs.python.org/3/library/venv.html](https://docs.python.org/3/library/venv.html)
 
-Alternativelly, you can use venv to setup virtual enviroment.\
+Alternativelly, you can use venv to setup virtual enviroment.
+
 _The command below crates a `.venv` directory in the project path (Always be sure you are in the project path!)_
 ```
 python -m venv .venv
@@ -65,11 +66,11 @@ _Installing actual version. Be sure you are in the project directory!_
 ```
 pipenv install django
 ```
-If you want to install a specific version of Django, just use the version number.
+If you want to install a specific version of Django, just use the version number
 ```
 pipenv install django==5.0.1
 ```
-You can use >, <, <= or >= to specify the version.
+You can use >, <, <= or >= to specify the version
 
 ## Setting up Django
 1.  **Create Project**
@@ -78,7 +79,7 @@ You can use >, <, <= or >= to specify the version.
     ```
     This command creates a Django project in the actual directory and a config subdirectory inside it with the files `settings.py` `urls.py` `asgi.py` `wsgi.py`.
     
-    #### Check if the project works well on localhost.
+    #### Check if the project works well on localhost
     ```
     python manage.py runserver
     ``` 
