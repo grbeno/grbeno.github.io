@@ -20,7 +20,7 @@ OS: **Windows 11 Pro 64bit**
     - pip/conda(for Anaconda/Miniconda environment)
     
 My choices are **python 3.10**, **VS Code** and **pip**.
-Although, I will use **pipenv** for Django web application development, because I also need to setup virtual environment.
+Although, I will use **pipenv** for Django web application development, because I also need to setup virtual environment. Of course, the built-in python module venv is also an option here.
 
 ### Pipenv
 
@@ -34,7 +34,7 @@ _Change the directory according to the project path_
 ```
 cd <the_path_of_your_project_directory>
 ```
-_The installation command creates the Pipfile and Pipfile.lock with the dependencies and version infos_
+_The installation command creates the Pipfile and Pipfile.lock with the dependencies and version infos._
 ```
 pipenv install  <dependencies>  
 ```
@@ -42,11 +42,26 @@ _Activate the virtual environment_
 ```
 pipenv shell
 ```
+### Venv
 
-Alternativelly, you can use venv to setup virtual enviroment.
+[https://docs.python.org/3/library/venv.html](https://docs.python.org/3/library/venv.html)
+
+Alternativelly, you can use venv to setup virtual enviroment.\
+_The command below crates a `.venv` directory in the project path (Always be sure you are in the project path!)_
+```
+python -m venv .venv
+```
+_Activate the virtual environment_
+```
+.venv/Scripts/activate
+```
+_Install the dependencies if you already have a file containing the required packages and modules_
+```
+pip install -r requirements.txt
+```
 
 ## Django installation
-_Installing actual version. Be sure you are in the right directory!_
+_Installing actual version. Be sure you are in the project directory!_
 ```
 pipenv install django
 ```
