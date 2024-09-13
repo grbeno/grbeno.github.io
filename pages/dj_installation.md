@@ -170,6 +170,9 @@ You can use >, <, <= or >= to specify the version
     psql -U postgres 
     ```
     Postgres asks for the password here.
+    ```
+    Password for user postgres:
+    ```
 
     Create database for the project
     ```
