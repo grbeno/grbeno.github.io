@@ -45,7 +45,10 @@ Now, you can migrate the data to the database.
 python manage.py makemigrations accounts
 python manage.py migrate
 ```
-Update the user forms (you can find at http://127.0.0.1:8000/admin) with the custom user model.
+Update the user forms (you can find at http://127.0.0.1:8000/admin) with the custom user model. Create a `forms.py` file in the accounts directory.
+
+`WARNING!` When I am writing this post, the latest version of Django is 5.1.1. In this version, use AdminUserCreationForm instead of UserCreationForm.
+
 ```python
 # accounts/forms.py
 

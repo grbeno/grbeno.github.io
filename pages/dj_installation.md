@@ -169,15 +169,23 @@ You can use >, <, <= or >= to specify the version
     ```
     psql -U postgres 
     ```
+    Postgres asks for the password here.
+
+    Create database for the project
     ```
-    CREATE DATABASE <db_name> WITH OWNER postgres; 
+    postgres=# CREATE DATABASE <db_name> WITH OWNER postgres; 
+    ```
+    Check the existing databases
+    ```
+    postgres=# \l 
+    ```
+    Quit Postgres
+    ```
+    postgres=# \q 
     ```
     _Install psycopg2 & dj_database_url._
     ```
-    pipenv install psycopg2
-    ```
-    ```
-    pipenv install dj_database_url
+    pipenv install psycopg2-binary dj_database_url
     ```
     You have to set the environment variables for the database!
     My choice for this purpose is [environs](https://pypi.org/project/environs/).
@@ -190,8 +198,6 @@ You can use >, <, <= or >= to specify the version
 
     DATABASE_URL=postgresql://postgres:<password>@localhost:5432/<db_name>
     SSL_REQUIRE=False
-    DB_PASSWORD=<password>
-
     ```
     _config/settings.py_
     ```python
@@ -201,14 +207,14 @@ You can use >, <, <= or >= to specify the version
     env = Env()
     env.read_env()
                     
-    # DB configuered in .env file /DATABASE_URL/ -> dj_database_url.config() returns a dictionary
+    # DB configured in .env file /DATABASE_URL/ -> dj_database_url.config() returns a dictionary
     db_config = dj_database_url.config(conn_max_age=600, ssl_require=env.bool('SSL_REQUIRE', default=True))
     DATABASES = {'default': db_config}
     
     ```
-    
     Finally, you can migrate the data into the database, but
-    `WARNING:` **Before you go any further, it is worth considering the following:** [Custom user model](https://grbeno.github.io/pages/dj_customuser.html)
+    `WARNING!` **Before you go any further, it is worth considering the following:** [Custom user model](https://grbeno.github.io/pages/dj_customuser.html)
+    
     
     ```
     python manage.py migrate
