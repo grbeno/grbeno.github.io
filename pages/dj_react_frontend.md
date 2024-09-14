@@ -27,9 +27,9 @@ nvm list
 ```
 nvm use newest
 ```
-Learn more from the [documentation of nvm-windows](https://github.com/coreybutler/nvm-windows).
+Learn more from the [documentation of nvm-windows](https://github.com/coreybutler/nvm-windows/blob/master/README.md).
 ### Initialize React added to the Django project
-Stay in the Django project directory and cerate the new directory 'frontend' (or what you want) for React files.
+Stay in the Django project directory and create the new directory 'frontend' (or what you prefer) for React files.
 ```
 npx create-react-app@latest frontend
 ```
@@ -93,6 +93,13 @@ from django.views.generic import TemplateView
 class React(TemplateView):
     template_name = 'index.html'
 ```
+
+Finally, run the Django application with React frontend
+
+``` 
+python manage.py runserver
+```
+
 ### Docker
 __Dockerfile__ \
 Create `Dockerfile` inside the `frontend/` directory.
