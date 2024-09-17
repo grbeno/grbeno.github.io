@@ -9,7 +9,7 @@ OS: **Windows 11 Pro 64bit**
 ### First steps
 Install node on Windows OS using [nvm-windows](https://github.com/coreybutler/nvm-windows/releases).
 
-__For nvm-windows:__ After clicking on the link, download the nvm-setup.zip directory (Assets), then unzip it and run the installer!
+__For nvm-windows:__ After clicking on the link, download the `nvm-setup.zip` directory (Assets), then unzip it and run the installer!
 
 Install node
 
@@ -29,7 +29,7 @@ nvm use newest
 ```
 Learn more from the [documentation of nvm-windows](https://github.com/coreybutler/nvm-windows/blob/master/README.md).
 ### Initialize React added to the Django project
-Stay in the Django project directory and create the new directory 'frontend' (or what you prefer) for React files.
+Stay in the Django project directory and create the new directory `frontend` (or what you prefer) for React files.
 ```
 npx create-react-app@latest frontend
 ```
@@ -40,7 +40,7 @@ cd frontend
 npm run build
 ```
 ### Do some modifications in Django
-Add the 'frontend/build' path to TEMPLATES.
+Add the `frontend/build` path to TEMPLATES.
 ```python
 # config/settings.py
 
@@ -97,6 +97,50 @@ class React(TemplateView):
 Finally, run the Django application with React frontend
 
 ``` 
+python manage.py runserver
+```
+### Start your custom UI in React
+Delete the unnecessary files: `App.test.js` `logo.svg` `reportWebVitals.js` `setupTests.js`
+
+Delete the dependencies with the files above from `index.js`.
+
+Delete all rules except .App from `App.css`.
+
+```css
+/* App.css */
+
+.App {
+  text-align: center;
+}
+```
+Start customizing the `App.js`
+```javascript
+// App.js
+
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+     <h1> Hello World </h1>
+    </div>
+  );
+}
+
+export default App;
+```
+After modification go to `frontend` directory and run build
+```
+cd frontend
+```
+```
+npm run build
+```
+Go back to project directory and run the app
+```
+cd ..
+```
+```
 python manage.py runserver
 ```
 
