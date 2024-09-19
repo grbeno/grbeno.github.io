@@ -11,7 +11,7 @@
     
     - Download Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
     
-    - Install Git on your System
+    - Install Git on your system
     
     - Check if the installation is succesful
         ```
@@ -44,7 +44,7 @@
         ```
     - Add all files that are not ignored by `.gitignore`
         ```
-        $ git add .
+        git add .
         ```
     - Make the first inital commit
         ```
