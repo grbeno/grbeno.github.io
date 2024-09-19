@@ -6,15 +6,60 @@
 	    ```
         pip freeze > requirements.txt
 	    ```
-*	git, github
-    - Create git and github repository
-    - [https://docs.github.com/en/repositories/creating](https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories)
-*	collectstatic
+*	Git, GitHub
+    - Create Git repository locally
+    
+    - Download Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+    
+    - Install Git on your System
+    
+    - Check if the installation is succesful
+        ```
+        git --version
+        ```
+    
+    - Initalize a Git repository in your project directory
+        ```
+        cd <project path>
+        ```
+        ```
+        git init
+        ```
+    
+    - Create a GitHub account if you haven't got yet: [https://github.com/](https://github.com/)
+    
+    - Create a new repository `Repository/new`, name the new repo, set to private or keep it public
+    
+    - Create a `.gitignore` file and add the names of the files to it that should be ignored while pushing to GitHub.
+    
+    - If you use React as well, copy the content of `frontend/.gitignore` (related to React) to the new `.gitignore` file in the project directory. 
+    
+    - Delete `frontend/.gitignore`
+    
+    - Create your `README.md` file and delete `frontend/README.md` (if you don't need it)
+
+    - Connect the local Git repository to the remote GitHub repo
+        ``` 
+        git remote add origin <copy the path from github>
+        ```
+    - Add all files that are not ignored by `.gitignore`
+        ```
+        $ git add .
+        ```
+    - Make the first inital commit
+        ```
+        git commit -m 'init'
+        ```
+    - Push it to the GitHub
+        ```
+        git push -u origin main
+        ```
+*	Collect static files
     - Collect static files before deploying
       ```
       python manage.py collectstatic --noinput
       ```
-*	config/settings.py
+*	`config/settings.py`
     - Add the url to the `ALLOWED_HOST` (<mysitename.up.railway.app e.g.)
 *   Gunicorn
     - [https://pypi.org/project/gunicorn/](https://pypi.org/project/gunicorn/)
