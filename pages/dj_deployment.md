@@ -128,6 +128,81 @@ docker --version
 ```
 docker run hello-world
 ```
+Create a requirements text file, if you haven't created one yet, that will be used by the Dockerfile to install the dependencies in the container.
+```
+pip freeze > requirements.txt
+```
+    
+__Dockerfile__
+```docker
+# Pull base image
+FROM python:3.11-slim-bullseye
+
+# Set environment variables
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set work directory
+WORKDIR /code
+
+# Install dependencies
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copy project
+COPY . /code/
+```
+__docker-compose.yml__
+```docker
+services:
+
+backend:
+    build: .
+    container_name: my_helloworld
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+    - .:/code
+    ports:
+    - 8000:8000
+    depends_on:
+    - db
+    environment:
+    - "SECRET_KEY=${SECRET_KEY}" # .env
+    - "DEBUG=True"
+    - "DATABASE_URL=postgres://postgres:postgres@db:5432/postgres"
+    - "SSL_REQUIRED=False"
+
+db:
+    image: postgres:16.2
+    container_name: my_helloworld_db
+    ports:
+    - '5432:5432'
+    volumes:
+    - postgres_data:/var/lib/postgresql/data/
+    environment:
+    - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+volumes:
+postgres_data:
+```
+According to the content of compose yaml file, generate secret key and add to the `.env` file.
+```python
+python -c 'import secrets;print(secrets.token_hex(32))'
+```
+```python
+# .env
+
+SECRET_KEY="<generated with the command above>"
+DEBUG=True  # Set the `DEBUG` variable as well
+```
+Modify secret key and the debug in the config/settings.py
+```python
+# config/settings.py
+
+SECRET_KEY = env.str('SECRET_KEY')
+DEBUG = env.bool('DEBUG', default=False)
+```
 Build docker-compose
 ```
 docker-compose build
