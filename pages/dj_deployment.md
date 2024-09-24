@@ -207,15 +207,28 @@ Build docker-compose
 ```
 docker-compose build
 ```
+Use Django commands to migrate data and create superuser
+```
+$ docker-compose exec backend python manage.py migrate
+```
+
+```
+$ docker-compose exec backend python manage.py createsuperuser
+```
+
 Start services based on docker-compose.yml
 ```
 docker-compose up -d
+```
+Open the application in the web-browser
+```
+http://localhost:8000/
 ```
 To turn off the services
 ```
 docker-compose down
 ```
-To run Django commands
+To run any Django commands
 ```
 docker-compose exec <django_service_name> python manage.py <command>
 ```

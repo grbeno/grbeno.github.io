@@ -164,7 +164,6 @@ CMD ["npm", "start"]
 ```
 Complete the `docker-compose.yml` in the project directory with the frontend service
 ```docker
-...
 
 frontend:
     build: ./frontend
@@ -177,7 +176,7 @@ frontend:
       - REACT_APP_URL=http://localhost:8000
     depends_on:
       - backend
-...
+      
 ```
 __More about Docker [here](https://grbeno.github.io/pages/dj_deployment.html).__
 
