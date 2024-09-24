@@ -209,11 +209,11 @@ docker-compose build
 ```
 Use Django commands to migrate data and create superuser
 ```
-$ docker-compose exec backend python manage.py migrate
+docker-compose exec backend python manage.py migrate
 ```
 
 ```
-$ docker-compose exec backend python manage.py createsuperuser
+docker-compose exec backend python manage.py createsuperuser
 ```
 
 Start services based on docker-compose.yml
