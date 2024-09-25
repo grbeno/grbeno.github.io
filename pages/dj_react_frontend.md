@@ -28,7 +28,7 @@ nvm list
 nvm use newest
 ```
 Learn more from the [documentation of nvm-windows](https://github.com/coreybutler/nvm-windows/blob/master/README.md).
-### Initialize React added to the Django project
+### Initialize React and adding to the Django
 Stay in the Django project directory and create the new directory `frontend` (or what you prefer) for React files.
 ```
 npx create-react-app@latest frontend
@@ -37,17 +37,33 @@ npx create-react-app@latest frontend
 cd frontend
 ```
 ```
+npm install copyfiles
+```
+Modify `package.json` according to the next. With this modification static files from the frontend's `build` directory copied to the Django's `static`.
+```
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && npm run copy-build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "copy-build": "copyfiles -u 1 build/**/* ../static/"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1"
+  },
+```
+```
 npm run build
 ```
 ### Do some modifications in Django
-Add the `frontend/build` path to TEMPLATES.
+Add the `static` path to TEMPLATES.
 ```python
 # config/settings.py
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR.joinpath('frontend/build')),],
+        'DIRS': [str(BASE_DIR.joinpath('static')),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,7 +82,7 @@ Set staticfiles directory
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [ str(BASE_DIR.joinpath('frontend', 'build', 'static')) ]
+STATICFILES_DIRS = [ str(BASE_DIR.joinpath('static', 'static')) ]
 ```
 Set url for React template view
 ```python
@@ -95,7 +111,9 @@ class React(TemplateView):
 ```
 
 Finally, run the Django application with React frontend
-
+``` 
+cd ..
+```
 ``` 
 python manage.py runserver
 ```
