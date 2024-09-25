@@ -40,7 +40,7 @@ cd frontend
 npm install copyfiles
 ```
 Modify `package.json` according to the next. With this modification static files from the frontend's `build` directory copied to the Django's `static`.
-```
+```json
 "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && npm run copy-build",
