@@ -58,11 +58,11 @@ Modify `package.json` according to the next. With this modification static files
     "copyfiles": "^2.4.1"
   },
 ```
-The __-u__ flag in the __copy-build__ script is specifies how many directory levels to strip from the source paths. 
+The __-u__ flag in the __copy-build__ script specifies how many directory levels to strip from the source paths. 
 ```
 npm run build
 ```
-### 1. Vite
+### 2. Vite
 
 ```
 npm create vite@latest frontend
@@ -74,7 +74,7 @@ cd frontend
 ```
 npm install
 ```
-Modify vite.config.js according to the next. With this modification static files from the frontend's build directory copied to the Django's static.
+Modify `vite.config.js` according to the next. With this modification static files from the frontend's build directory copied to the Django's static.
 ```javascript
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -159,7 +159,7 @@ cd ..
 python manage.py runserver
 ```
 ### Start your custom UI in React
-Delete the unnecessary files: `App.test.js` `logo.svg` `reportWebVitals.js` `setupTests.js`, and the entire content of the `build` and `public` directories except for `index.hmtl`.
+Delete the unnecessary files. In the case of CRA, the following files are included: `App.test.js` `logo.svg` `reportWebVitals.js` `setupTests.js`, and the entire content of the `build` and `public` directories except for `index.hmtl`.
 
 Delete the dependencies with the files above from `index.js`.
 
