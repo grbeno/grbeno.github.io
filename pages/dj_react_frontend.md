@@ -28,8 +28,14 @@ nvm list
 nvm use newest
 ```
 Learn more from the [documentation of nvm-windows](https://github.com/coreybutler/nvm-windows/blob/master/README.md).
-### Initialize React and adding to the Django
+### Starting a React application and adding it to Django.
 Stay in the Django project directory and create the new directory `frontend` (or what you prefer) for React files.
+
+Here are two possible solutions to start React.
+  - CRA (_create-react-app_)
+  - Vite
+
+### 1. CRA (_create-react-app_)
 ```
 npx create-react-app@latest frontend
 ```
@@ -56,7 +62,41 @@ The __-u__ flag in the __copy-build__ script is specifies how many directory lev
 ```
 npm run build
 ```
-### Do some modifications in Django
+### 1. Vite
+
+```
+npm create vite@latest frontend
+```
+Vite asks you to select a framework (choose React) and your preference between JavaScript and TypeScript.
+```
+cd frontend
+```
+```
+npm install
+```
+Modify vite.config.js according to the next. With this modification static files from the frontend's build directory copied to the Django's static.
+```javascript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  
+  plugins: [react()],
+  
+  // This ensures that when you run npm run build, Vite places the CSS and JS  files in the correct location that Django expects.
+  
+  build: {
+    outDir: '../static',  // Output to Django's static folder
+    assetsDir: 'assets',  // Put all static assets in an 'assets' directory
+  },
+
+},)
+```
+```
+npm run build
+```
+### Make modifications in Django for both Vite and CRA as well
 Add the `static` path to TEMPLATES.
 ```python
 # config/settings.py
