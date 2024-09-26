@@ -46,12 +46,13 @@ Modify `package.json` according to the next. With this modification static files
     "build": "react-scripts build && npm run copy-build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "copy-build": "copyfiles -u 1 build/**/* ../static/"
+    "copy-build": "copyfiles -u 2 build/static/**/* ../static/ && copyfiles -u 1 build/* ../static/"
   },
   "devDependencies": {
     "copyfiles": "^2.4.1"
   },
 ```
+The __-u__ flag in the __copy-build__ script is specifies how many directory levels to strip from the source paths. 
 ```
 npm run build
 ```
@@ -82,7 +83,7 @@ Set staticfiles directory
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [ str(BASE_DIR.joinpath('static', 'static')) ]
+STATICFILES_DIRS = [ str(BASE_DIR.joinpath('static')) ]
 ```
 Set url for React template view
 ```python
@@ -118,7 +119,7 @@ cd ..
 python manage.py runserver
 ```
 ### Start your custom UI in React
-Delete the unnecessary files: `App.test.js` `logo.svg` `reportWebVitals.js` `setupTests.js`
+Delete the unnecessary files: `App.test.js` `logo.svg` `reportWebVitals.js` `setupTests.js`, and the entire content of the `build` and `public` directories except for `index.hmtl`.
 
 Delete the dependencies with the files above from `index.js`.
 
