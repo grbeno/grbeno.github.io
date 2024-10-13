@@ -20,6 +20,7 @@ If more versions are installed, check the list and select newest one.
 ```
 nvm list
 ```
+Select the newest version
 ```
 nvm use newest
 ```
