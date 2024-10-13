@@ -16,16 +16,16 @@ Install node
 ```
 nvm install <node_version>
 ```
-Check node is installed
-```
-node -v
-```
 If more versions are installed, check the list and select newest one.
 ```
 nvm list
 ```
 ```
 nvm use newest
+```
+Check node is installed
+```
+node -v
 ```
 Learn more from the [documentation of nvm-windows](https://github.com/coreybutler/nvm-windows/blob/master/README.md).
 ### Starting a React application and adding it to Django.
