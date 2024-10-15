@@ -163,7 +163,10 @@ You can use >, <, <= or >= to specify the version
     If your choice is the same, then you should make the next steps:
 	
     **Download & install postgres:**
-     [https://www.postgresql.org/download/windows/](https://www.postgresql.org/download/windows/)
+
+    Download installer of the appropriate PostgreSQL version (windows x86-64 e.g.) from the enterprisedb site: [https://www.enterprisedb.com/downloads/postgres-postgresql-downloads](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads). EDB installer is recommended by Postgres: [https://www.postgresql.org/download/windows/](https://www.postgresql.org/download/windows/)
+
+    Add `c:\Program Files\PostgreSQL\16\bin\` or your custom path to the system enviroment variables.
 
     **Create database locally**
     ```
