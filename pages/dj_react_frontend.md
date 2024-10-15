@@ -126,6 +126,14 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [ str(BASE_DIR.joinpath('static')) ]
 ```
+In the case of Vite
+```python
+# config/settings.py
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [ str(BASE_DIR.joinpath('static','assets')) ]
+```
 Set url for React template view
 ```python
 # config/urls.py
