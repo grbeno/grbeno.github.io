@@ -138,7 +138,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # React
-    re_path(r'^.*$', React.as_view(), name='frontend'),
+    re_path(r'^.*', React.as_view(), name='frontend'),
 ]
 ```
 Create React template view
