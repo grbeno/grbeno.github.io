@@ -1,6 +1,31 @@
 # Deploying Django
 
 ### Preparation
+*   Complete the `.env` file with additional variables
+
+    If your `.env` file doesn't exist yet, create one and use a tool to load the variables. My choice is `environs`
+    ```
+    pip install environs
+    ```
+    In the case of using `dj-database-url` to connect to postgres database, the `.env` file already includes at least one variable `DATABASE_URL`.
+
+    Consider adding the following variables to the `.env` file before deploying: `SECRET_KEY`, `DEBUG`, and other data or passwords, as well as API keys that you don't want to share in production.
+
+    For generating secret key use this command:
+    ```
+    python -c 'import secrets;print(secrets.token_hex(32))'
+    ```
+    Set `DEBUG` to true in development mode, and to false by default.
+    ```python
+    # config/settings.py
+
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = env.str('SECRET_KEY')
+
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = env.bool('DEBUG', default=False)
+    ```
+    After deploying you might have to set these variables in your choosen service or cloud platform as well.
 *	requirements.txt
     - Create a text file for listing dependencies
 	    ```
