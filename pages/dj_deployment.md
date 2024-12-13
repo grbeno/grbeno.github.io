@@ -132,7 +132,7 @@
 	- Add the **domain** to `ALLOWED_HOST`
 	- Add the **url** to `CSRF_TRUSTED_ORIGINS`
 * Create a `nixpacks.toml` file
-	- If you want to deploy also a JS front-end library with node (ReactJS e.g.)
+	- If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
 		```
 		providers = ["node", "python"]
 		```
@@ -144,6 +144,7 @@ Install **Heroku CLI**
 ```
 cd <project-name>
 ```
+Login to Heroku
 ```
 heroku login
 ```
@@ -155,12 +156,13 @@ heroku git:remote <project-name>
 If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
 
 Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
-Add `SECRET_KEY` too. Add `DISABLE_COLLECTSTATIC` and set to 1, if needed.
+Add `SECRET_KEY` and `DISABLE_COLLECTSTATIC` and setting to 1, if needed.
 
-If you want to deploy also a JS front-end library with node (ReactJS e.g.)
+If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
 > A Node.js app on Heroku requires a 'package.json' at the root of the directory structure.
 > If you are trying to deploy a Node.js application, ensure that this
 > file is present at the top level directory.
+
 - Add **heroku/nodejs** Buildpack
 
 Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
