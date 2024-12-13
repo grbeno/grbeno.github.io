@@ -52,7 +52,7 @@
     
     - Create a `.gitignore` file and add the names of the files to it that should be ignored while pushing to GitHub.
 
-        - Typically, the `.env` file, virtual environment, and other non-public data, is placed in this file.
+        - *Typically, the `.env` file, virtual environment, and other non-public data, is placed in this file.*
     
     - If you use React as well, copy the content of `frontend/.gitignore` (related to React) to the new `.gitignore` file in the project directory. 
     
@@ -113,20 +113,25 @@
 
 ### Deploying to Railway
  
-* Open Railway UI
-	- Add new project
-	- Add postgres as database
-	- Set variables: `SECRET_KEY` `DATABASE_URL`
-* Go to settings
-	- Generate domain
-	- Deploy: custom start command
+* Open Railway **Dashboard**
+	- Add **New** Project
+	    -   Add Postgres as database \
+            Select **Deploy PostgreSQL** option
+        - **Create +** and select the GitHub repo to deploy
+	- Set **Variables**
+        - `SECRET_KEY` from your `.env` file\
+        `DATABASE_URL` from Railway (*offered automatically*)
+* Go to **Settings**
+    - **Networking\Public Networking**
+        - Generate or add a custom one
+	- **Deploy\Custom Start Command**
 		```
   		gunicorn config.wsgi
 		```
-* Set `DOMAIN_NAME` variable then (config/settings.py):
-	- Add the domain to `ALLOWED_HOST`
-	- Add url to `CSRF_TRUSTED_ORIGINS`
-* Create a nixpacks.toml file
+* Update `config/settings.py`
+	- Add the **domain** to `ALLOWED_HOST`
+	- Add the **url** to `CSRF_TRUSTED_ORIGINS`
+* Create a `nixpacks.toml` file
 	- If you want to deploy also a JS front-end library with node (ReactJS e.g.)
 		```
 		providers = ["node", "python"]
