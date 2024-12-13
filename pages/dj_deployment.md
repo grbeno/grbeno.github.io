@@ -31,7 +31,7 @@
 	    ```
         pip freeze > requirements.txt
 	    ```
-*	Git, GitHub
+*	**Git, GitHub**
     - Create Git repository locally
     
     - Download Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
@@ -56,6 +56,8 @@
     - Create a new repository `Repository/new`, name the new repo, set to private or keep it public
     
     - Create a `.gitignore` file and add the names of the files to it that should be ignored while pushing to GitHub.
+
+        - Typically, the `.env` file, virtual environment, and other non-public data, is placed in this file.
     
     - If you use React as well, copy the content of `frontend/.gitignore` (related to React) to the new `.gitignore` file in the project directory. 
     
@@ -79,14 +81,27 @@
         ```
         git push -u origin main
         ```
-*	Collect static files
+*	**Collect static files**
+    - Add `STATIC_ROOT` to `config/settings.py`
+    - Install whitenoise
+        ```
+        pipenv install whitenoise
+        ```
+        ```
+        MIDDLEWARE = [
+            # ...
+            "django.middleware.security.SecurityMiddleware",
+            "whitenoise.middleware.WhiteNoiseMiddleware",
+            # ...
+        ]
+        ```
     - Collect static files before deploying
       ```
       python manage.py collectstatic --noinput
       ```
 *	`config/settings.py`
-    - Add the url to the `ALLOWED_HOST` (<mysitename.up.railway.app e.g.)
-*   Gunicorn
+    - Add the url to the `ALLOWED_HOST` (<mysitename.up.railway.app e.g.) or set to '*' temporarily.
+*   **Gunicorn**
     - [https://pypi.org/project/gunicorn/](https://pypi.org/project/gunicorn/)
         ```
         pipenv install gunicorn
@@ -106,7 +121,7 @@
 	- Generate domain
 	- Deploy: custom start command
 		```
-  		gunicorn.wsgi --log file -
+  		gunicorn config.wsgi
 		```
 * Set `DOMAIN_NAME` variable then (config/settings.py):
 	- Add the domain to `ALLOWED_HOST`
