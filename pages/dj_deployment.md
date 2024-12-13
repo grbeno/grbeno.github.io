@@ -26,11 +26,6 @@
     DEBUG = env.bool('DEBUG', default=False)
     ```
     After deploying you might have to set these variables in your choosen service or cloud platform as well.
-*	requirements.txt
-    - Create a text file for listing dependencies
-	    ```
-        pip freeze > requirements.txt
-	    ```
 *	**Git, GitHub**
     - Create Git repository locally
     
@@ -110,6 +105,11 @@
         ```
         web: gunicorn config.wsgi --log-file
         ```
+* **requirements.txt**
+    - Create a text file for listing dependencies
+	    ```
+        pip freeze > requirements.txt
+	    ```
 
 ### Deploying to Railway
  
