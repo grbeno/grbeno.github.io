@@ -103,7 +103,7 @@
         ```
     - _Procfile_
         ```
-        web: gunicorn config.wsgi --log-file
+        web: gunicorn config.wsgi --log-file -
         ```
 * **requirements.txt**
     - Create a text file for listing dependencies
@@ -139,21 +139,36 @@
 
 ### Deploying to Heroku
 
-Open Heroku UI
+Create an account on Heroku\
+Install **Heroku CLI**
 ```
 cd <project-name>
 ```
 ```
 heroku login
 ```
+Open Heroku **Dashboard**\
+Create **New Project** in Heroku
 ```
 heroku git:remote <project-name>
 ```
 If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
+
+Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
+Add `SECRET_KEY` too. Add `DISABLE_COLLECTSTATIC` and set to 1, if needed.
+
+If you want to deploy also a JS front-end library with node (ReactJS e.g.)
+> A Node.js app on Heroku requires a 'package.json' at the root of the directory structure.
+> If you are trying to deploy a Node.js application, ensure that this
+> file is present at the top level directory.
+- Add **heroku/nodejs** Buildpack
+
+Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
+
+Finally,
 ```
 git push heroku main
 ```
-Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
 ```
 heroku run python manage.py migrate
 ```
