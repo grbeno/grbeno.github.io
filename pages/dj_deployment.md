@@ -1,210 +1,213 @@
 # Deploying Django
 
 ### Preparation
-*   Complete the `.env` file with additional variables
+Complete the `.env` file with additional variables
 
-    If your `.env` file doesn't exist yet, create one and use a tool to load the variables. My choice is `environs`
-    ```
-    pip install environs
-    ```
-    In the case of using `dj-database-url` to connect to postgres database, the `.env` file already includes at least one variable `DATABASE_URL`.
+If your `.env` file doesn't exist yet, create one and use a tool to load the variables. My choice is `environs`
+```
+pip install environs
+```
+In the case of using `dj-database-url` to connect to postgres database, the `.env` file already includes at least one variable `DATABASE_URL`.
 
-    Consider adding the following variables to the `.env` file before deploying: `SECRET_KEY`, `DEBUG`, and other data or passwords, as well as API keys that you don't want to share in production.
+Consider adding the following variables to the `.env` file before deploying: `SECRET_KEY`, `DEBUG`, and other data or passwords, as well as API keys that you don't want to share in production.
 
-    For generating secret key use this command:
-    ```
-    python -c 'import secrets;print(secrets.token_hex(32))'
-    ```
-    Set `DEBUG` to true in development mode, and to false by default.
-    ```python
-    # config/settings.py
+For generating secret key use this command:
+```
+python -c 'import secrets;print(secrets.token_hex(32))'
+```
+Set `DEBUG` to true in development mode, and to false by default.
+```python
+# config/settings.py
 
-    # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = env.str('SECRET_KEY')
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env.str('SECRET_KEY')
 
-    # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = env.bool('DEBUG', default=False)
-    ```
-    After deploying you might have to set these variables in your choosen service or cloud platform as well.
-*	**Git, GitHub**
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = env.bool('DEBUG', default=False)
+```
+After deploying you might have to set these variables in your choosen service or cloud platform as well.
+
+**Git, GitHub**
      
-     Create Git repository locally
+    Create Git repository locally
 
-     Download Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+    Download Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-     Install Git on your system
+    Install Git on your system
 
-     Check if the installation is succesful
-    ```
-    git --version
-    ```
+    Check if the installation is succesful
+```
+git --version
+```
+
+Initalize a Git repository in your project directory
     
-    Initalize a Git repository in your project directory
-        
-    ```
-    cd <project path>
-    ```
-    ```
-    git init
-    ```
+```
+cd <project path>
+```
+```
+git init
+```
+
+Create a GitHub account if you haven't got yet: [https://github.com/](https://github.com/)
+
+Create a new repository `Repository/new`, name the new repo, set to private or keep it public
+
+Create a `.gitignore` file and add the names of the files to it that should be ignored while pushing to GitHub.
+
+*Typically, the `.env` file, virtual environment, and other non-public data, is placed in this file.*
+
+If you use React as well, copy the content of `frontend/.gitignore` (related to React) to the new `.gitignore` file in the project directory. 
+
+Delete `frontend/.gitignore`
+
+Create your `README.md` file and delete `frontend/README.md` (if you don't need it)
+
+Connect the local Git repository to the remote GitHub repo
+``` 
+git remote add origin <copy the path from github>
+```
+Add all files that are not ignored by `.gitignore`
+```
+git add .
+```
+Make the first inital commit
+```
+git commit -m 'init'
+```
+Push it to the GitHub
+```
+git push -u origin main
+```
+**Collect static files**
     
-    Create a GitHub account if you haven't got yet: [https://github.com/](https://github.com/)
+Add `STATIC_ROOT` to `config/settings.py`
 
-    Create a new repository `Repository/new`, name the new repo, set to private or keep it public
-
-    Create a `.gitignore` file and add the names of the files to it that should be ignored while pushing to GitHub.
-
-    *Typically, the `.env` file, virtual environment, and other non-public data, is placed in this file.*
-
-    If you use React as well, copy the content of `frontend/.gitignore` (related to React) to the new `.gitignore` file in the project directory. 
-
-    Delete `frontend/.gitignore`
-
-    Create your `README.md` file and delete `frontend/README.md` (if you don't need it)
-
-    Connect the local Git repository to the remote GitHub repo
-    ``` 
-    git remote add origin <copy the path from github>
-    ```
-    Add all files that are not ignored by `.gitignore`
-    ```
-    git add .
-    ```
-    Make the first inital commit
-    ```
-    git commit -m 'init'
-    ```
-    Push it to the GitHub
-    ```
-    git push -u origin main
-    ```
-*	**Collect static files**
-    
-    Add `STATIC_ROOT` to `config/settings.py`
-    
-    Install whitenoise
-    ```
-    pipenv install whitenoise
-    ```
-    ```
-    MIDDLEWARE = [
-        # ...
-        "django.middleware.security.SecurityMiddleware",
-        "whitenoise.middleware.WhiteNoiseMiddleware",
-        # ...
-    ]
-    ```
-    Collect static files before deploying
-    ```
-    python manage.py collectstatic --noinput
-    ```
+Install whitenoise
+```
+pipenv install whitenoise
+```
+```
+MIDDLEWARE = [
+    # ...
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # ...
+]
+```
+Collect static files before deploying
+```
+python manage.py collectstatic --noinput
+```
 *	`config/settings.py`
     - Add the url to the `ALLOWED_HOST` (<mysitename.up.railway.app e.g.) or set to '*' temporarily.
-*   **Gunicorn**
 
-    [https://pypi.org/project/gunicorn/](https://pypi.org/project/gunicorn/)
-    ```
-    pipenv install gunicorn
-    ```
-    _Procfile_
-    ```
-    web: gunicorn config.wsgi --log-file -
-    ```
-* **requirements.txt**
+**Gunicorn**
 
-    Create a text file for listing dependencies
-	```
-    pip freeze > requirements.txt
-	```
+[https://pypi.org/project/gunicorn/](https://pypi.org/project/gunicorn/)
+```
+pipenv install gunicorn
+```
+_Procfile_
+```
+web: gunicorn config.wsgi --log-file -
+```
+**requirements.txt**
+
+Create a text file for listing dependencies
+```
+pip freeze > requirements.txt
+```
 
 ### Deploying to Railway
  
-* Open Railway **Dashboard**
+Open Railway **Dashboard**
 	
-    Add **New** Project
-	
-    Add Postgres as database \ Select **Deploy PostgreSQL** option
-    
-    **Create +**, then select the GitHub repo to deploy
-	
-    Set **Variables**
-    `SECRET_KEY` from your `.env` file and `DATABASE_URL` from Railway (*offered automatically*)
-* Go to **Settings**
-    **Networking\Public Networking**
-    
-    Generate or add a custom one
-	**Deploy\Custom Start Command**
-	```
-  	gunicorn config.wsgi
-	```
-* Update `config/settings.py`
-	
-    Add the **domain** to `ALLOWED_HOST`
-	
-    Add the **url** to `CSRF_TRUSTED_ORIGINS`
-* Create a `nixpacks.toml` file
-	If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
+Add **New** Project
 
-	```
-	providers = ["node", "python"]
-	```
+Add Postgres as database \ Select **Deploy PostgreSQL** option
+
+**Create +**, then select the GitHub repo to deploy
+
+Set **Variables**
+`SECRET_KEY` from your `.env` file and `DATABASE_URL` from Railway (*offered automatically*)
+Go to **Settings**
+**Networking\Public Networking**
+
+Generate or add a custom one
+**Deploy\Custom Start Command**
+
+```
+gunicorn config.wsgi
+```
+
+Update `config/settings.py`
+	
+Add the **domain** to `ALLOWED_HOST`
+
+Add the **url** to `CSRF_TRUSTED_ORIGINS`
+Create a `nixpacks.toml` file
+If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
+
+```
+providers = ["node", "python"]
+```
 
 ### Deploying to Heroku
 
-* Create an account on Heroku
+Create an account on Heroku
 
-    Install **Heroku CLI**
-    ```
-    cd <project-name>
-    ```
-    Login to Heroku
-    ```
-    heroku login
-    ```
-* Open Heroku **Dashboard**
+Install **Heroku CLI**
+```
+cd <project-name>
+```
+Login to Heroku
+```
+heroku login
+```
+**Open Heroku Dashboard**
 
-    Create **New Project** in Heroku
+Create New Project in Heroku
 
-    If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
+If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
 
-    Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
+Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
 
-    Add `SECRET_KEY` and `DISABLE_COLLECTSTATIC` and setting to 1, if needed.
+Add `SECRET_KEY` and `DISABLE_COLLECTSTATIC` and setting to 1, if needed.
 
-    If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
+If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
 
-    > A Node.js app on Heroku requires a 'package.json' at the root of the directory structure.
-    > If you are trying to deploy a Node.js application, ensure that this
-    > file is present at the top level directory.
+> A Node.js app on Heroku requires a 'package.json' at the root of the directory structure.
+> If you are trying to deploy a Node.js application, ensure that this
+> file is present at the top level directory.
 
-    Add **heroku/nodejs** Buildpack
+Add **heroku/nodejs** Buildpack
 
-* Complete the process on your system
+**Complete the process on your system**
 
-    Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
+Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
 
-    Using git to start deployment process
-    ```
-    heroku git:remote <project-name>
-    ```
-    ```
-    git add .
-    ```
-    ```
-    git commit -m 'deploying'
-    ```
-    Finally,
-    ```
-    git push heroku main
-    ```
-    ```
-    heroku run python manage.py migrate
-    ```
+Using git to start deployment process
+```
+heroku git:remote <project-name>
+```
+```
+git add .
+```
+```
+git commit -m 'deploying'
+```
+Finally,
+```
+git push heroku main
+```
+```
+heroku run python manage.py migrate
+```
 
 ### Docker
 
-__Sign up/in Docker Hub__ \
-[https://app.docker.com/signup](https://app.docker.com/signup)
+__Sign up/in Docker Hub:__ [https://app.docker.com/signup](https://app.docker.com/signup)
 
 __Download and install Docker Desktop:__ 
 [https://docs.docker.com/desktop/install/windows-install/](https://docs.docker.com/desktop/install/windows-install/)
