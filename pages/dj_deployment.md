@@ -101,6 +101,7 @@
 *	`config/settings.py`
     - Add the url to the `ALLOWED_HOST` (<mysitename.up.railway.app e.g.) or set to '*' temporarily.
 *   **Gunicorn**
+
     [https://pypi.org/project/gunicorn/](https://pypi.org/project/gunicorn/)
     ```
     pipenv install gunicorn
@@ -110,6 +111,7 @@
     web: gunicorn config.wsgi --log-file -
     ```
 * **requirements.txt**
+
     Create a text file for listing dependencies
 	```
     pip freeze > requirements.txt
