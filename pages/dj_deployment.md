@@ -121,17 +121,15 @@
 	
     Add **New** Project
 	
-    Add Postgres as database \
+    Add Postgres as database \ Select **Deploy PostgreSQL** option
     
-    Select **Deploy PostgreSQL** option
-    
-    **Create +** and select the GitHub repo to deploy
+    **Create +**, then select the GitHub repo to deploy
 	
     Set **Variables**
-    `SECRET_KEY` from your `.env` file\
-    `DATABASE_URL` from Railway (*offered automatically*)
+    `SECRET_KEY` from your `.env` file and `DATABASE_URL` from Railway (*offered automatically*)
 * Go to **Settings**
     **Networking\Public Networking**
+    
     Generate or add a custom one
 	**Deploy\Custom Start Command**
 	```
@@ -144,13 +142,15 @@
     Add the **url** to `CSRF_TRUSTED_ORIGINS`
 * Create a `nixpacks.toml` file
 	If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
+
 	```
 	providers = ["node", "python"]
 	```
 
 ### Deploying to Heroku
 
-Create an account on Heroku\
+Create an account on Heroku
+
 Install **Heroku CLI**
 ```
 cd <project-name>
@@ -159,22 +159,28 @@ Login to Heroku
 ```
 heroku login
 ```
-Open Heroku **Dashboard**\
+Open Heroku **Dashboard**
+
 Create **New Project** in Heroku
+
+Add the new project to git
+
 ```
 heroku git:remote <project-name>
 ```
 If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
 
 Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
+
 Add `SECRET_KEY` and `DISABLE_COLLECTSTATIC` and setting to 1, if needed.
 
 If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
+
 > A Node.js app on Heroku requires a 'package.json' at the root of the directory structure.
 > If you are trying to deploy a Node.js application, ensure that this
 > file is present at the top level directory.
 
-- Add **heroku/nodejs** Buildpack
+Add **heroku/nodejs** Buildpack
 
 Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
 
