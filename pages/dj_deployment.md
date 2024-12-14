@@ -149,41 +149,46 @@
 
 ### Deploying to Heroku
 
-Create an account on Heroku
+* Create an account on Heroku
 
-Install **Heroku CLI**
-```
-cd <project-name>
-```
-Login to Heroku
-```
-heroku login
-```
-Open Heroku **Dashboard**
+    Install **Heroku CLI**
+    ```
+    cd <project-name>
+    ```
+    Login to Heroku
+    ```
+    heroku login
+    ```
+* Open Heroku **Dashboard**
 
-Create **New Project** in Heroku
+    Create **New Project** in Heroku
 
-Add the new project to git
+    If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
 
-```
-heroku git:remote <project-name>
-```
-If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
+    Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
 
-Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
+    Add `SECRET_KEY` and `DISABLE_COLLECTSTATIC` and setting to 1, if needed.
 
-Add `SECRET_KEY` and `DISABLE_COLLECTSTATIC` and setting to 1, if needed.
+    If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
 
-If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
+    > A Node.js app on Heroku requires a 'package.json' at the root of the directory structure.
+    > If you are trying to deploy a Node.js application, ensure that this
+    > file is present at the top level directory.
 
-> A Node.js app on Heroku requires a 'package.json' at the root of the directory structure.
-> If you are trying to deploy a Node.js application, ensure that this
-> file is present at the top level directory.
-
-Add **heroku/nodejs** Buildpack
+    Add **heroku/nodejs** Buildpack
 
 Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
 
+Using git to start deployment process
+```
+heroku git:remote <project-name>
+```
+```
+git add .
+```
+```
+git commit -m 'deploying'
+```
 Finally,
 ```
 git push heroku main
