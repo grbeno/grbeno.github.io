@@ -5,7 +5,7 @@ layout: default
 `Installation` `Custom User Model` `Deployment` `Views` `Models` `Urls` `Templates` ...
 
 ---
-## [Installation and setting up](./pages/dj_installation.md)
+## [Installation and Setting Up](./pages/dj_installation.md)
 
 Getting started with Django, a popular Python web framework, is essential for developing high-performance web applications.\
 \

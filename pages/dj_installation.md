@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# Installing Django and setting up
+# Installing Django and Setting Up
 
 OS: **Windows 11 Pro 64bit**
 
