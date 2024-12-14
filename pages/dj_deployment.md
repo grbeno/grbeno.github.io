@@ -177,25 +177,27 @@
 
     Add **heroku/nodejs** Buildpack
 
-Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
+* Complete the process on your computer
 
-Using git to start deployment process
-```
-heroku git:remote <project-name>
-```
-```
-git add .
-```
-```
-git commit -m 'deploying'
-```
-Finally,
-```
-git push heroku main
-```
-```
-heroku run python manage.py migrate
-```
+    Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
+
+    Using git to start deployment process
+    ```
+    heroku git:remote <project-name>
+    ```
+    ```
+    git add .
+    ```
+    ```
+    git commit -m 'deploying'
+    ```
+    Finally,
+    ```
+    git push heroku main
+    ```
+    ```
+    heroku run python manage.py migrate
+    ```
 
 ### Docker
 
