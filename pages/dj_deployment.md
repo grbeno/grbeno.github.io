@@ -27,115 +27,126 @@
     ```
     After deploying you might have to set these variables in your choosen service or cloud platform as well.
 *	**Git, GitHub**
-    - Create Git repository locally
-    
-    - Download Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
-    
-    - Install Git on your system
-    
-    - Check if the installation is succesful
-        ```
-        git --version
-        ```
-    
-    - Initalize a Git repository in your project directory
-        ```
-        cd <project path>
-        ```
-        ```
-        git init
-        ```
-    
-    - Create a GitHub account if you haven't got yet: [https://github.com/](https://github.com/)
-    
-    - Create a new repository `Repository/new`, name the new repo, set to private or keep it public
-    
-    - Create a `.gitignore` file and add the names of the files to it that should be ignored while pushing to GitHub.
+     
+     Create Git repository locally
 
-        - *Typically, the `.env` file, virtual environment, and other non-public data, is placed in this file.*
-    
-    - If you use React as well, copy the content of `frontend/.gitignore` (related to React) to the new `.gitignore` file in the project directory. 
-    
-    - Delete `frontend/.gitignore`
-    
-    - Create your `README.md` file and delete `frontend/README.md` (if you don't need it)
+     Download Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-    - Connect the local Git repository to the remote GitHub repo
-        ``` 
-        git remote add origin <copy the path from github>
-        ```
-    - Add all files that are not ignored by `.gitignore`
-        ```
-        git add .
-        ```
-    - Make the first inital commit
-        ```
-        git commit -m 'init'
-        ```
-    - Push it to the GitHub
-        ```
-        git push -u origin main
-        ```
+     Install Git on your system
+
+     Check if the installation is succesful
+    ```
+    git --version
+    ```
+    
+    Initalize a Git repository in your project directory
+        
+    ```
+    cd <project path>
+    ```
+    ```
+    git init
+    ```
+    
+    Create a GitHub account if you haven't got yet: [https://github.com/](https://github.com/)
+
+    Create a new repository `Repository/new`, name the new repo, set to private or keep it public
+
+    Create a `.gitignore` file and add the names of the files to it that should be ignored while pushing to GitHub.
+
+    *Typically, the `.env` file, virtual environment, and other non-public data, is placed in this file.*
+
+    If you use React as well, copy the content of `frontend/.gitignore` (related to React) to the new `.gitignore` file in the project directory. 
+
+    Delete `frontend/.gitignore`
+
+    Create your `README.md` file and delete `frontend/README.md` (if you don't need it)
+
+    Connect the local Git repository to the remote GitHub repo
+    ``` 
+    git remote add origin <copy the path from github>
+    ```
+    Add all files that are not ignored by `.gitignore`
+    ```
+    git add .
+    ```
+    Make the first inital commit
+    ```
+    git commit -m 'init'
+    ```
+    Push it to the GitHub
+    ```
+    git push -u origin main
+    ```
 *	**Collect static files**
-    - Add `STATIC_ROOT` to `config/settings.py`
-    - Install whitenoise
-        ```
-        pipenv install whitenoise
-        ```
-        ```
-        MIDDLEWARE = [
-            # ...
-            "django.middleware.security.SecurityMiddleware",
-            "whitenoise.middleware.WhiteNoiseMiddleware",
-            # ...
-        ]
-        ```
-    - Collect static files before deploying
-      ```
-      python manage.py collectstatic --noinput
-      ```
+    
+    Add `STATIC_ROOT` to `config/settings.py`
+    
+    Install whitenoise
+    ```
+    pipenv install whitenoise
+    ```
+    ```
+    MIDDLEWARE = [
+        # ...
+        "django.middleware.security.SecurityMiddleware",
+        "whitenoise.middleware.WhiteNoiseMiddleware",
+        # ...
+    ]
+    ```
+    Collect static files before deploying
+    ```
+    python manage.py collectstatic --noinput
+    ```
 *	`config/settings.py`
     - Add the url to the `ALLOWED_HOST` (<mysitename.up.railway.app e.g.) or set to '*' temporarily.
 *   **Gunicorn**
-    - [https://pypi.org/project/gunicorn/](https://pypi.org/project/gunicorn/)
-        ```
-        pipenv install gunicorn
-        ```
-    - _Procfile_
-        ```
-        web: gunicorn config.wsgi --log-file -
-        ```
+    [https://pypi.org/project/gunicorn/](https://pypi.org/project/gunicorn/)
+    ```
+    pipenv install gunicorn
+    ```
+    _Procfile_
+    ```
+    web: gunicorn config.wsgi --log-file -
+    ```
 * **requirements.txt**
-    - Create a text file for listing dependencies
-	    ```
-        pip freeze > requirements.txt
-	    ```
+    Create a text file for listing dependencies
+	```
+    pip freeze > requirements.txt
+	```
 
 ### Deploying to Railway
  
 * Open Railway **Dashboard**
-	- Add **New** Project
-	    -   Add Postgres as database \
-            Select **Deploy PostgreSQL** option
-        - **Create +** and select the GitHub repo to deploy
-	- Set **Variables**
-        - `SECRET_KEY` from your `.env` file\
-        `DATABASE_URL` from Railway (*offered automatically*)
+	
+    Add **New** Project
+	
+    Add Postgres as database \
+    
+    Select **Deploy PostgreSQL** option
+    
+    **Create +** and select the GitHub repo to deploy
+	
+    Set **Variables**
+    `SECRET_KEY` from your `.env` file\
+    `DATABASE_URL` from Railway (*offered automatically*)
 * Go to **Settings**
-    - **Networking\Public Networking**
-        - Generate or add a custom one
-	- **Deploy\Custom Start Command**
-		```
-  		gunicorn config.wsgi
-		```
+    **Networking\Public Networking**
+    Generate or add a custom one
+	**Deploy\Custom Start Command**
+	```
+  	gunicorn config.wsgi
+	```
 * Update `config/settings.py`
-	- Add the **domain** to `ALLOWED_HOST`
-	- Add the **url** to `CSRF_TRUSTED_ORIGINS`
+	
+    Add the **domain** to `ALLOWED_HOST`
+	
+    Add the **url** to `CSRF_TRUSTED_ORIGINS`
 * Create a `nixpacks.toml` file
-	- If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
-		```
-		providers = ["node", "python"]
-		```
+	If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
+	```
+	providers = ["node", "python"]
+	```
 
 ### Deploying to Heroku
 
