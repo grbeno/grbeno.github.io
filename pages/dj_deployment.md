@@ -99,8 +99,9 @@ Collect static files before deploying
 ```
 python manage.py collectstatic --noinput
 ```
-*	`config/settings.py`
-    - Add the url to the `ALLOWED_HOST` (<mysitename.up.railway.app e.g.) or set to '*' temporarily.
+**Update `config/settings.py`**
+
+Add the URL to the `ALLOWED_HOST` _myappname.up.railway.app or myappname.herokuapp.com for example_ or set to '*' temporarily.
 
 **Gunicorn**
 
@@ -120,6 +121,8 @@ pip freeze > requirements.txt
 ```
 
 ### Deploying to Railway
+
+Create an account on [Railway](https://railway.app/)
  
 Open Railway **Dashboard**
 	
@@ -131,11 +134,11 @@ Add Postgres as database \ Select **Deploy PostgreSQL** option
 
 Set **Variables**
 `SECRET_KEY` from your `.env` file and `DATABASE_URL` from Railway (*offered automatically*)
-Go to **Settings**
-**Networking\Public Networking**
 
-Generate or add a custom one
-**Deploy\Custom Start Command**
+Go to **Settings**
+Generate or add a custom URL: **Networking\Public Networking**
+
+Go to **Deploy\Custom Start Command** and add the gunicorn command
 
 ```
 gunicorn config.wsgi
@@ -145,7 +148,8 @@ Update `config/settings.py`
 	
 Add the **domain** to `ALLOWED_HOST`
 
-Add the **url** to `CSRF_TRUSTED_ORIGINS`
+Add the **URL** to `CSRF_TRUSTED_ORIGINS`
+
 Create a `nixpacks.toml` file
 If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
 
@@ -153,9 +157,11 @@ If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
 providers = ["node", "python"]
 ```
 
+Finally, deploy the project using the button on the dashboard.
+
 ### Deploying to Heroku
 
-Create an account on Heroku
+Create an account on [Heroku](https://www.heroku.com/)
 
 Install **Heroku CLI**
 ```
@@ -169,7 +175,9 @@ heroku login
 
 Create New Project in Heroku
 
-If heroku does not support the python version which you would like to use in runtime.txt then ignore it (.slugignore) and use the default on the platform.
+If heroku does not support the python version which you would like to use in `runtime.txt` then ignore it (`.slugignore`) and use the default on the platform. _Files and directories listing in slugignore will be ignored by Heroku_.
+
+**Environment variables**
 
 Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
 
