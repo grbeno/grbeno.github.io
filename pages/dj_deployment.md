@@ -29,13 +29,13 @@ After deploying you might have to set these variables in your choosen service or
 
 **Git, GitHub**
      
-    Create Git repository locally
+Create Git repository locally
 
-    Download Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+Download Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-    Install Git on your system
+Install Git on your system
 
-    Check if the installation is succesful
+Check if the installation is succesful
 ```
 git --version
 ```
