@@ -177,7 +177,7 @@
 
     Add **heroku/nodejs** Buildpack
 
-* Complete the process on your computer
+* Complete the process on your system
 
     Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
 
