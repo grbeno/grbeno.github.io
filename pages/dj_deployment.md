@@ -101,7 +101,7 @@ python manage.py collectstatic --noinput
 ```
 **Update `config/settings.py`**
 
-Add the URL to the `ALLOWED_HOST` _myappname.up.railway.app or myappname.herokuapp.com for example_ or set to '*' temporarily.
+Add the URL to the `ALLOWED_HOST` - _myappname.up.railway.app or myappname.herokuapp.com for example_ - or set to '*' temporarily.
 
 **Gunicorn**
 
@@ -150,8 +150,7 @@ Add the **domain** to `ALLOWED_HOST`
 
 Add the **URL** to `CSRF_TRUSTED_ORIGINS`
 
-Create a `nixpacks.toml` file
-If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
+If you want to deploy a JS front-end library with NodeJS (ReactJS e.g.) as well, then create a `nixpacks.toml` file
 
 ```
 providers = ["node", "python"]
@@ -175,15 +174,13 @@ heroku login
 
 Create New Project in Heroku
 
-If heroku does not support the python version which you would like to use in `runtime.txt` then ignore it (`.slugignore`) and use the default on the platform. _Files and directories listing in slugignore will be ignored by Heroku_.
-
 **Environment variables**
 
 Overview > heroku postgres > settings > database credentials. Then copy URI to `DATABASE_URL` variable in config vars.
 
 Add `SECRET_KEY` and `DISABLE_COLLECTSTATIC` and setting to 1, if needed.
 
-If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
+If you want to deploy a JS front-end library with NodeJS (ReactJS e.g.) as well
 
 > A Node.js app on Heroku requires a 'package.json' at the root of the directory structure.
 > If you are trying to deploy a Node.js application, ensure that this
@@ -192,6 +189,8 @@ If you want to deploy also a JS front-end library with NodeJS (ReactJS e.g.)
 Add **heroku/nodejs** Buildpack
 
 **Complete the process on your system**
+
+If heroku does not support the python version which you would like to use in `runtime.txt` then ignore it - `.slugignore` - and use the default on the platform. _Files and directories listing in slugignore will be ignored by Heroku_.
 
 Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
 
