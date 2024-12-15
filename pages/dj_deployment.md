@@ -79,9 +79,11 @@ Push it to the GitHub
 ```
 git push -u origin main
 ```
-**Collect static files**
+**Collect staticfiles**
     
 Add `STATIC_ROOT` to `config/settings.py`
+
+Set `STATIC_ROOT` to point to other destination than `STATICFILES_DIRS`
 
 Install whitenoise
 ```
@@ -101,7 +103,7 @@ python manage.py collectstatic --noinput
 ```
 **Update `config/settings.py`**
 
-Add the URL to the `ALLOWED_HOST` - _myappname.up.railway.app or myappname.herokuapp.com for example_ - or set to '*' temporarily.
+Add the URL to the `ALLOWED_HOSTS` - _myappname.up.railway.app or myappname.herokuapp.com for example_ - or set to '*' temporarily.
 
 **Gunicorn**
 
@@ -132,8 +134,7 @@ Add Postgres as database \ Select **Deploy PostgreSQL** option
 
 **Create +**, then select the GitHub repo to deploy
 
-Set **Variables**
-`SECRET_KEY` from your `.env` file and `DATABASE_URL` from Railway (*offered automatically*)
+Set **Variables**`SECRET_KEY` from your `.env` file and `DATABASE_URL` from Railway (*you have to copy the DATABASE_PUBLIC_URL from the Postgres variables*)
 
 Go to **Settings**
 Generate or add a custom URL: **Networking\Public Networking**
@@ -141,12 +142,12 @@ Generate or add a custom URL: **Networking\Public Networking**
 Go to **Deploy\Custom Start Command** and add the gunicorn command
 
 ```
-gunicorn config.wsgi
+gunicorn config.wsgi --log-file -
 ```
 
 Update `config/settings.py`
 	
-Add the **domain** to `ALLOWED_HOST`
+Add the **domain** to `ALLOWED_HOSTS`
 
 Add the **URL** to `CSRF_TRUSTED_ORIGINS`
 
@@ -192,7 +193,7 @@ Add **heroku/nodejs** Buildpack
 
 If heroku does not support the python version which you would like to use in `runtime.txt` then ignore it - `.slugignore` - and use the default on the platform. _Files and directories listing in slugignore will be ignored by Heroku_.
 
-Add your heroku domain to the `ALLOWED_HOST` in `config/settings.py`
+Add your heroku domain to the `ALLOWED_HOSTS` in `config/settings.py`
 
 Using git to start deployment process
 ```
