@@ -32,9 +32,11 @@ Learn more from the [documentation of nvm-windows](https://github.com/coreybutle
 ### Starting a React application and adding it to Django.
 Stay in the Django project directory and create the new directory `frontend` (or what you prefer) for React files.
 
+It is possible to install React either in the project directory or in a dedicated `frontend` directory. In the former case, a new directory needs to be created, but the files can later be moved into the project directory.
+
 Here are two possible solutions to start React.
-  - CRA (_create-react-app_)
-  - Vite
+  - **CRA** (_create-react-app_)
+  - **Vite** **Preferred*
 
 ### 1. CRA (_create-react-app_)
 ```
