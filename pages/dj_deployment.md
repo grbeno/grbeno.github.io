@@ -187,6 +187,10 @@ If you want to deploy a JS front-end library with NodeJS (ReactJS e.g.) as well
 > If you are trying to deploy a Node.js application, ensure that this
 > file is present at the top level directory.
 
+Since the `package.json` is dependent on the other React related files, copy the entire contents of the `frontend` directory into the root directory!
+
+If you are using Vite to create React project, don't forget the build:OutDir to modify to './static' in the `vite.config.js`!
+
 Add **heroku/nodejs** Buildpack
 
 **Complete the process on your system**
