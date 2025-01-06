@@ -19,6 +19,12 @@ Set `DEBUG` to true in development mode, and to false by default.
 ```python
 # config/settings.py
 
+from environs import Env
+
+# Load the environment variables
+env = Env()
+env.read_env()
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('SECRET_KEY')
 
