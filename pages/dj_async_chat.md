@@ -1,4 +1,4 @@
-## Deploying Async Chat using LLM with Memory-layer to have Message History
+## Deploying Async LLM-Chat with Memory-layer
 
 ### 1. Redis Memory Channel Layer
 
@@ -6,9 +6,9 @@ There is a Django web application with ReactJS as the frontend, which presents a
 
 The chat has a memory layer as well, allowing the user to have longer conversations with the chatbot.
 
-The main tools of the application are channels in Django and websockets in React, which are the key components for implementing asynchroniuos communication.
+The main tools of the application are [`channels`](https://channels.readthedocs.io/en/stable/index.html) in Django and `WebSocket` in React, which are the key components for implementing asynchroniuos communication.
 
-This application works well on localhost, but if we want to deploy it, we need to change the channel layer from in-memory to Redis, as suggested by the [documentation](https://channels.readthedocs.io/en/stable/topics/channel_layers.html#redis-channel-layer).
+This application works well on localhost, but if we want to deploy it, we need to change the channel layer from In-memory to Redis, as suggested by the [documentation](https://channels.readthedocs.io/en/stable/topics/channel_layers.html#redis-channel-layer).
 
 [GitHub repository is available here](https://github.com/grbeno)
 
@@ -77,6 +77,8 @@ class AiChat():
             return answer
 
 ```
+
+The places where I modified the original code are marked with the _*# Redis Channel Layer*_ comment.
 
 Next, we need to change the channel layer in `./config/settings.py` from `"channels.layers.InMemoryChannelLayer"` to `"channels_redis.core.RedisChannelLayer"` and set the host to the Redis port.
 
