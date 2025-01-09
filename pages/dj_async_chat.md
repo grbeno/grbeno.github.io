@@ -10,7 +10,7 @@ The main tools of the application are [`channels`](https://channels.readthedocs.
 
 This application works well on localhost, but if we want to deploy it, we need to change the channel layer from In-memory to Redis, as suggested by the [documentation](https://channels.readthedocs.io/en/stable/topics/channel_layers.html#redis-channel-layer).
 
-[GitHub repository is available here](https://github.com/grbeno)
+[GitHub repository is available here](https://github.com/grbeno/llmchat)
 
 ### Change the In-memory to Redis Channel Layer
 
@@ -19,9 +19,11 @@ As the first step, we need to install [`channels_redis`](https://github.com/djan
 pip install channels_redis
 ```
 
-In order to use Redis for the channel layer, we need to modify the code in several places. First of all, we need to update the Django file that contains the class for handling the chat.
+In order to use Redis for the channel layer, we need to **modify the code** in several places. First of all, we need to update the Django file that contains the class for handling the chat.
 
 ```python
+# chat/chat_api.py
+
 from openai import OpenAI
 from environs import Env
 import redis  # Redis Channel Layer
@@ -79,11 +81,13 @@ class AiChat():
 
 ```
 
-The places where I modified the original code are marked with the _*# Redis Channel Layer*_ comment.
+The places where I modified the original code are marked with the **_# Redis Channel Layer_** comment.
 
 Next, we need to change the channel layer in `./config/settings.py` from In-memory to Redis Channel Layer and set the host to the Redis port.
 
 ```python
+# config/settings.py
+
 # Channels
 
 CHANNEL_LAYERS = {
@@ -98,7 +102,7 @@ CHANNEL_LAYERS = {
 
 ```
 
-The "REDISHOST" provided from the cloud platform, while "redis" is the default for local development, as you will see in the next section.
+The "REDISHOST" environment variable provided from the cloud platform, while "redis" is the default for local development, as you will see in the next section.
 
 ### 2. Deploying
 
