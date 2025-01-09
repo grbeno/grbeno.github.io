@@ -14,6 +14,7 @@ This application works well on localhost, but if we want to deploy it, we need t
 
 ### Change the In-memory to Redis Channel Layer
 
+As the first step, we need to install [`channels_redis`](https://github.com/django/channels_redis/?tab=readme-ov-file#channels_redis)
 ```
 pip install channels_redis
 ```
@@ -80,6 +81,23 @@ class AiChat():
 
 The places where I modified the original code are marked with the _*# Redis Channel Layer*_ comment.
 
-Next, we need to change the channel layer in `./config/settings.py` from `"channels.layers.InMemoryChannelLayer"` to `"channels_redis.core.RedisChannelLayer"` and set the host to the Redis port.
+Next, we need to change the channel layer in `./config/settings.py` from In-memory to Redis Channel Layer and set the host to the Redis port.
+
+```python
+# Channels
+
+CHANNEL_LAYERS = {
+    "default": {
+        # "BACKEND": "channels.layers.InMemoryChannelLayer",
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(env.str('REDISHOST', default="redis"), 6379)],
+        },           
+     }    
+ }
+
+```
+
+The "REDISHOST" provided from the cloud platform, while "redis" is the default for local development, as you will see in the next section.
 
 ### Deploying
