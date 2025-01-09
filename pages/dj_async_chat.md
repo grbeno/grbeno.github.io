@@ -4,9 +4,9 @@
 
 There is a Django web application with ReactJS as the frontend, which presents a chatbot with LLM using OpenAI's API.
 
-The chat has a memory layer as well, allowing the user to have longer conversations with the chatbot.
+The chat has a memory layer as well, allowing the user to have longer consistent conversations with the chatbot.
 
-The main tools of the application are [`channels`](https://channels.readthedocs.io/en/stable/index.html) in Django and `WebSocket` in React, which are the key components for implementing asynchroniuos communication.
+The main tools of the application are [`channels`](https://channels.readthedocs.io/en/stable/index.html) in Django and `WebSocket` in React, which are the key components for implementing asynchronous messaging patterns.
 
 This application works well on localhost, but if we want to deploy it, we need to change the channel layer from In-memory to Redis, as suggested by the [documentation](https://channels.readthedocs.io/en/stable/topics/channel_layers.html#redis-channel-layer).
 
@@ -100,4 +100,5 @@ CHANNEL_LAYERS = {
 
 The "REDISHOST" provided from the cloud platform, while "redis" is the default for local development, as you will see in the next section.
 
-### Deploying
+### 2. Deploying
+
