@@ -32,6 +32,8 @@ Deploying a Django application can seem daunting, but it's an essential step to 
 \
 `Preparation` `Railway` `Heroku` `Docker-compose`
 
+## [Deploying Async LLM-Chat with Message History](./pages/dj_async_chat.md)
 
+`Django Channels` `WebSocket` `Redis` `LLM-Chat` `Railway` `Docker`
  
  

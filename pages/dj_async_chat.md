@@ -1,4 +1,4 @@
-## Deploying Async LLM-Chat with Memory-layer
+## Deploying Async LLM-Chat with Message History
 
 ### 1. Redis Memory Channel Layer
 
