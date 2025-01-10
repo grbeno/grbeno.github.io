@@ -16,7 +16,7 @@ This application works well on localhost, but if we want to deploy it, we need t
 
 As the first step, we need to install [`channels_redis`](https://github.com/django/channels_redis/?tab=readme-ov-file#channels_redis)
 ```
-pip install channels_redis
+pip install redis channels_redis
 ```
 
 In order to use Redis for the channel layer, we need to **modify the code** in several places. First of all, we need to update the Django file that contains the class for handling the chat.
@@ -88,11 +88,18 @@ Next, we need to change the channel layer in `./config/settings.py` from In-memo
 ```python
 # config/settings.py
 
+from environs import Env
+
+# Load the environment variables
+env = Env()
+env.read_env()
+
+# ...
+
 # Channels
 
 CHANNEL_LAYERS = {
     "default": {
-        # "BACKEND": "channels.layers.InMemoryChannelLayer",
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
             "hosts": [(env.str('REDISHOST', default="redis"), 6379)],
@@ -106,3 +113,57 @@ The "REDISHOST" environment variable provided from the cloud platform, while "re
 
 ### 2. Deploying
 
+In order to run Redis without installation, I am using Redis as a service in a `docker-compose.yml` file with a container image `Dockerfile`.
+The local environment files are not needed for the container, that is why I created a `.dockerignore` file as well.  
+
+#### Dockerfile
+```docker
+# Pull base image
+FROM python:3.11-slim-bullseye
+
+# Set environment variables
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set work directory
+WORKDIR /app
+
+# Install dependencies
+COPY ./requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy project
+COPY . /app/
+
+EXPOSE 8000
+```
+#### docker-compose.yml
+```yml
+services:
+  backend:
+    build: .
+    container_name: llmchat
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - redis
+    redis:
+      image: redis:latest
+      container_name: llmchat_redis
+      command: redis-server /usr/local/etc/redis/redis.conf
+      volumes:
+        - ./redis.conf:/usr/local/etc/redis/redis.conf
+      ports:
+        - '6379:6379'
+```
+#### .dockerignore
+```
+.venv/
+.git/
+.gitignore
+README.md
+```

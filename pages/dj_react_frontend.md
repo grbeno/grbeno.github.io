@@ -233,7 +233,7 @@ EXPOSE 3000
 CMD ["npm", "start"]
 ```
 Complete the `docker-compose.yml` in the project directory with the frontend service
-```docker
+```yml
 
 frontend:
     build: ./frontend

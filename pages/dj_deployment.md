@@ -263,7 +263,7 @@ RUN pip install -r requirements.txt
 COPY . /code/
 ```
 __docker-compose.yml__
-```docker
+```yml
 services:
 
 backend:
