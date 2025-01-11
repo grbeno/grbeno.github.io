@@ -189,7 +189,7 @@ web: daphne -b 0.0.0.0 -p 8080 config.asgi:application
 #### Install additional packages/libs required by daphne server
 
 ```
-
+pip install twisted[tls,http2]
 ```
 
 #### Environment variables
@@ -240,15 +240,21 @@ Pushing the files to a repo in GitHub
 
 #### Configuring Railway
 
-- Add the project as a GitHub repo. The builder then recognizes the Dockerfile and starts to build.
+- Create nixpacks.toml for building
+  ```toml
+  providers = ["node", "python"]
+  ```
+- Add the project as a GitHub repo. The builder in Railway then recognizes the Dockerfile and starts to build.
 
 - Set Railway environment variables: SECRET_KEY, OPENAI_API_KEY
 , REDISHOST
 
 - Set Custom Start Command in Settings > Deploy: `web: daphne -b 0.0.0.0 -p 8080 config.asgi:application`. Websocket port and URL port should be the same.
 
-- Drag & drop `docker-compose.yml` onto your project canvas, which should contain only the Redis service.
+- Update `src/Chat.jsx` with the new websocket url: 'wss://... .up.railway.app/ws/chat/';
 
-- Set ALLOWED_HOSTS and _TRUSTED_ORIGINS in `config/settings.py` with the Railway's data, and redeploy the project.
+- Set ALLOWED_HOSTS=['... .up.railway.app'] and CSRF_TRUSTED_ORIGINS=['https://... .up.railway.app'] in `config/settings.py` with the Railway's data.
+
+- Drag & drop `docker-compose.yml` onto your project canvas, which should contain only the Redis service.
 
 **If any errors occur, check the build and deploy logs in Deployments > View logs!**
