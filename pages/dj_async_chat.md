@@ -178,17 +178,68 @@ docker-compose up
 ```
 ### 3. Deploying
 
-- Procfile with daphne
-- Install additional packages/libs
-- Add wss to React
-- npm install + build
+This application will be deployed to [Railway](https://railway.com/new).
 
-Railway
+#### Create Procfile
 
-- nixpacks.toml or Dockerfile as builders
-- Allowed Hosts, CSRF Origins
-- Environment variables: DEBUG, SECRET_KEY, REDISHOST, API_KEY locally and on Railway
-- freezing requirements
-- STATIC_ROOT
-- collecstatic
-- push to github repo
+```
+web: daphne -b 0.0.0.0 -p 8080 config.asgi:application
+```
+
+#### Install additional packages/libs required by daphne server
+
+```
+```
+
+#### Environment variables
+
+Django
+
+Set __DEBUG__=True, __SECRET_KEY__ (recommended generate a new one) in `.env`. Update also `config/settings.py` with `SECRET_KEY = env.str('SECRET_KEY')` and `DEBUG = env.bool('DEBUG', default=False)`.
+
+React
+
+Set __VITE_WEBSOCKET_URL__ in `frontend/.env` and calling it as ``const websocketURL = ${import.meta.env.VITE_WEBSOCKET_URL}/ws/chat/`;`` in `src/Chat.jsx`. 
+
+
+#### Serving static files
+
+```python
+# config/settings.py
+
+# Static files ...
+
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))  # production
+
+```
+Adding whitenoise to collect the static files of the project
+
+```
+pip install whitenoise
+```
+```python
+# config/settings.py
+
+MIDDLEWARE = [
+    # ...
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # ...
+]
+```
+Collect static files with Django command
+```
+python manage.py collectstatic --noinput
+```
+Freezing to requirements before deploying
+```
+pip freeze > requirements.txt
+```
+Pushing the files to a repo in GitHub
+
+#### Configuring Railway
+
+- Setting Railway environment variables: SECRET_KEY, OPENAI_API_KEY
+, REDISHOST
+- Drag & drop `docker-compose.yml` containing Redis service onto your project canvas 
+- Setting ALLOWED_HOSTS and _TRUSTED_ORIGINS in `config/settings.py` with the Railway's data 
