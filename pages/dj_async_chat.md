@@ -189,17 +189,18 @@ web: daphne -b 0.0.0.0 -p 8080 config.asgi:application
 #### Install additional packages/libs required by daphne server
 
 ```
+
 ```
 
 #### Environment variables
 
 Django
 
-Set __DEBUG__=True, __SECRET_KEY__ (recommended generate a new one) in `.env`. Update also `config/settings.py` with `SECRET_KEY = env.str('SECRET_KEY')` and `DEBUG = env.bool('DEBUG', default=False)`.
+Set DEBUG=True, SECRET_KEY (recommended generate a new one) in `.env`. Update also `config/settings.py` with `SECRET_KEY = env.str('SECRET_KEY')` and `DEBUG = env.bool('DEBUG', default=False)`.
 
 React
 
-Set __VITE_WEBSOCKET_URL__ in `frontend/.env` and calling it as ``const websocketURL = ${import.meta.env.VITE_WEBSOCKET_URL}/ws/chat/`;`` in `src/Chat.jsx`. 
+Set VITE_WEBSOCKET_URL in `frontend/.env` and calling it as ``const websocketURL = ${import.meta.env.VITE_WEBSOCKET_URL}/ws/chat/`;`` in `src/Chat.jsx`. 
 
 
 #### Serving static files
@@ -239,7 +240,9 @@ Pushing the files to a repo in GitHub
 
 #### Configuring Railway
 
+- Add the project as a GitHub repo, the builder then recognizes the Dockerfile and starts to build and deploy 
 - Setting Railway environment variables: SECRET_KEY, OPENAI_API_KEY
 , REDISHOST
-- Drag & drop `docker-compose.yml` containing Redis service onto your project canvas 
+- Setting Custom Start Command in Settings/Deploy: `web: daphne -b 0.0.0.0 -p 8080 config.asgi:application`. Websocket port and URL port should be the same.
+- Drag & drop `docker-compose.yml` onto your project canvas containing only the Redis service 
 - Setting ALLOWED_HOSTS and _TRUSTED_ORIGINS in `config/settings.py` with the Railway's data 
