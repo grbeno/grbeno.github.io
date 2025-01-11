@@ -152,7 +152,7 @@ services:
     container_name: llmchat
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app  # hot reloading
+      - .:/app  # hot reloading, overrides .dockerignore!
     ports:
       - 8000:8000
     depends_on:
