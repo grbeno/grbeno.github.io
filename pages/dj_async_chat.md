@@ -157,14 +157,14 @@ services:
       - 8000:8000
     depends_on:
       - redis
-    redis:
-      image: redis:latest
-      container_name: llmchat_redis
-      command: redis-server /usr/local/etc/redis/redis.conf
-      volumes:
-        - ./redis.conf:/usr/local/etc/redis/redis.conf
-      ports:
-        - '6379:6379'
+  redis:
+    image: redis:latest
+    container_name: llmchat_redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - '6379:6379'
 ```
 #### Run the application with the next Docker commands: 
 ```
