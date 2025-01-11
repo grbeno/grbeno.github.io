@@ -196,7 +196,7 @@ web: daphne -b 0.0.0.0 -p 8080 config.asgi:application
 
 Django
 
-Set DEBUG=True, SECRET_KEY (recommended generate a new one) in `.env`. Update also `config/settings.py` with `SECRET_KEY = env.str('SECRET_KEY')` and `DEBUG = env.bool('DEBUG', default=False)`.
+Set DEBUG=True, SECRET_KEY in `.env`. Update also `config/settings.py` with `SECRET_KEY = env.str('SECRET_KEY')` and `DEBUG = env.bool('DEBUG', default=False)`.
 
 React
 
@@ -240,9 +240,15 @@ Pushing the files to a repo in GitHub
 
 #### Configuring Railway
 
-- Add the project as a GitHub repo, the builder then recognizes the Dockerfile and starts to build and deploy 
-- Setting Railway environment variables: SECRET_KEY, OPENAI_API_KEY
+- Add the project as a GitHub repo. The builder then recognizes the Dockerfile and starts to build.
+
+- Set Railway environment variables: SECRET_KEY, OPENAI_API_KEY
 , REDISHOST
-- Setting Custom Start Command in Settings/Deploy: `web: daphne -b 0.0.0.0 -p 8080 config.asgi:application`. Websocket port and URL port should be the same.
-- Drag & drop `docker-compose.yml` onto your project canvas containing only the Redis service 
-- Setting ALLOWED_HOSTS and _TRUSTED_ORIGINS in `config/settings.py` with the Railway's data 
+
+- Set Custom Start Command in Settings > Deploy: `web: daphne -b 0.0.0.0 -p 8080 config.asgi:application`. Websocket port and URL port should be the same.
+
+- Drag & drop `docker-compose.yml` onto your project canvas, which should contain only the Redis service.
+
+- Set ALLOWED_HOSTS and _TRUSTED_ORIGINS in `config/settings.py` with the Railway's data, and redeploy the project.
+
+**If any errors occur, check the build and deploy logs in Deployments > View logs!**
