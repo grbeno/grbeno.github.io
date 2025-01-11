@@ -111,11 +111,17 @@ CHANNEL_LAYERS = {
 
 The "REDISHOST" environment variable provided from the cloud platform, while "redis" is the default for local development, as you will see in the next section.
 
-### 2. Deploying
+### 2. Developing
 
-In order to run Redis without installation, I am using Redis as a service in a `docker-compose.yml` file with a container image `Dockerfile`.
-The local environment files are not needed for the container, that is why I created a `.dockerignore` file as well.  
+In order to run Redis without installation, I am using Redis as a service in a `docker-compose.yml` file with a `Dockerfile` for the container image.
 
+The local environment and specific Python files are not necessary for the container, so I could use a `.dockerignore` file in this case. However, especially for development purposes, hot reloading is more convenient.  
+
+Before building the Docker image, I update the requirements.txt file with the latest installations.
+
+```
+pip freeze > requirements.txt
+```
 #### Dockerfile
 ```docker
 # Pull base image
@@ -146,7 +152,7 @@ services:
     container_name: llmchat
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app
+      - .:/app  # hot reloading
     ports:
       - 8000:8000
     depends_on:
@@ -160,10 +166,29 @@ services:
       ports:
         - '6379:6379'
 ```
-#### .dockerignore
+#### Run the application with the next Docker commands: 
 ```
-.venv/
-.git/
-.gitignore
-README.md
+docker build -t llmchat-prod .
 ```
+```
+docker-compose build
+```
+```
+docker-compose up
+```
+### 3. Deploying
+
+- Procfile with daphne
+- Install additional packages/libs
+- Add wss to React
+- npm install + build
+
+Railway
+
+- nixpacks.toml or Dockerfile as builders
+- Allowed Hosts, CSRF Origins
+- Environment variables: DEBUG, SECRET_KEY, REDISHOST, API_KEY locally and on Railway
+- freezing requirements
+- STATIC_ROOT
+- collecstatic
+- push to github repo
