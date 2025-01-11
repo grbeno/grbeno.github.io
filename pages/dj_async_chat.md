@@ -227,11 +227,12 @@ Collect static files with Django command
 ```
 python manage.py collectstatic --noinput
 ```
-Freezing to requirements before deploying
+#### Freezing to requirements before deploying
 ```
 pip freeze > requirements.txt
 ```
-Pushing the files to a repo in GitHub
+#### GitHub
+Commit and Push the files to a repo in GitHub.
 
 #### Configuring Railway
 
@@ -243,14 +244,14 @@ Pushing the files to a repo in GitHub
   ```
   _We don't need "node" among the providers, because we are using React as static files on the backend._
 
-- Add the project as a GitHub repo. The builder in Railway then recognizes the nixpacks file and starts to build.
+- The builder in Railway recognizes the nixpacks file and starts to build.
 
 - Set Railway environment variables: SECRET_KEY, OPENAI_API_KEY
 , REDISHOST
 
 - Set Custom Start Command in Settings > Deploy: `web: daphne -b 0.0.0.0 -p 8080 config.asgi:application`. Websocket port and URL port should be the same.
 
-- Update `src/Chat.jsx` with the new websocket url: 'wss://... .up.railway.app/ws/chat/';
+- Update `src/Chat.jsx` with the new websocket url: `'wss://... .up.railway.app/ws/chat/';`. _Don't forget to run build and collectstatic!_
 
 - Set ALLOWED_HOSTS=['... .up.railway.app'] and CSRF_TRUSTED_ORIGINS=['https://... .up.railway.app'] in `config/settings.py` with the Railway's data.
 
