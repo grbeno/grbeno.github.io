@@ -12,7 +12,7 @@ This application works well on localhost, but if we want to deploy it, we need t
 
 [GitHub repository is available here](https://github.com/grbeno/llmchat)
 
-### Change the In-memory to Redis Channel Layer
+#### Change the In-memory to Redis Channel Layer
 
 As the first step, we need to install [`channels_redis`](https://github.com/django/channels_redis/?tab=readme-ov-file#channels_redis)
 ```
