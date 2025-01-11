@@ -198,11 +198,6 @@ Django
 
 Set DEBUG=True, SECRET_KEY in `.env`. Update also `config/settings.py` with `SECRET_KEY = env.str('SECRET_KEY')` and `DEBUG = env.bool('DEBUG', default=False)`.
 
-React
-
-Set VITE_WEBSOCKET_URL in `frontend/.env` and calling it as ``const websocketURL = ${import.meta.env.VITE_WEBSOCKET_URL}/ws/chat/`;`` in `src/Chat.jsx`. 
-
-
 #### Serving static files
 
 ```python
@@ -240,11 +235,15 @@ Pushing the files to a repo in GitHub
 
 #### Configuring Railway
 
-- Create nixpacks.toml for building
+- For building use nixpacks, so add `Dockerfile` `docker-compose.yml` and any Docker-related files for example `.dockerignore` to `.gitignore`
+
+- Create `nixpacks.toml` for building
   ```toml
-  providers = ["node", "python"]
+  providers = ["python"]
   ```
-- Add the project as a GitHub repo. The builder in Railway then recognizes the Dockerfile and starts to build.
+  _We don't need "node" among the providers, because we are using React as static files on the backend._
+
+- Add the project as a GitHub repo. The builder in Railway then recognizes the nixpacks file and starts to build.
 
 - Set Railway environment variables: SECRET_KEY, OPENAI_API_KEY
 , REDISHOST
