@@ -190,9 +190,9 @@ Quit Postgres
 ```
 postgres=# \q 
 ```
-_Install psycopg2 & dj_database_url._
+_Install psycopg2-binary & dj-database-url._
 ```
-pipenv install psycopg2-binary dj_database_url
+pipenv install psycopg2-binary dj-database-url
 ```
 You have to set the environment variables for the database!
 My choice for this purpose is [environs](https://pypi.org/project/environs/).
@@ -213,7 +213,9 @@ from environs import Env
 
 env = Env()
 env.read_env()
-                
+
+# ...
+
 # DB configured in .env file /DATABASE_URL/ -> dj_database_url.config() returns a dictionary
 db_config = dj_database_url.config(conn_max_age=600, ssl_require=env.bool('SSL_REQUIRE', default=True))
 DATABASES = {'default': db_config}
