@@ -2,38 +2,50 @@
 layout: default
 ---
 
-`Installation` `Custom User Model` `Deployment` `Views` `Models` `Urls` `Templates` ...
+---
+## [Deploying Async LLM-Chat with Message History](./pages/dj_async_chat.md)
+
+Deploying a real-time AI chat application using Channels and WebSockets, with Redis as the channel layer for message history.
+
+`Django Channels` `WebSocket` `Redis` `LLM-Chat` `Railway` `Docker`
 
 ---
-## [Installation and Setting Up](./pages/dj_installation.md)
 
-Getting started with Django, a popular Python web framework, is essential for developing high-performance web applications.\
-\
-`Prerequisites` `Pipenv` `Installation` `Setting up` `Hello World` `Database`
+## [Django with React Consuming LLM API](./pages/dj_deployment.md)
 
----
-## [Custom User Model](./pages/dj_customuser.md)
+A web application that consumes an LLM API to implement a language AI assistant, which helps with English correction and translation.
 
-Creating a custom user model in Django is a crucial step for developers who need to extend the default user functionalities to fit their application's unique requirements.\
-\
-`Models` `migration` `settings.py` `forms.py` `admin.py`
-
----
-## [Adding React to Django](./pages/dj_react_frontend.md)
-
- This combination offers an improved user experience compared to traditional Django templates, allowing for smoother interactions and a more modern web application feel.\
-\
-`Node` `React` `Staticfiles` `Setting up` `Hello World` `Docker` `GitHub`
+`Django Restframework` `Axios` `OpenAI API`
 
 ---
 ## [Deployment](./pages/dj_deployment.md)
 
-Deploying a Django application can seem daunting, but it's an essential step to make your project accessible to users worldwide. The easiest solutions here.\
-\
+Deploying a Django application can seem daunting, but it's an essential step to make your project accessible to users worldwide. The easiest solutions here.
+
 `Preparation` `Railway` `Heroku` `Docker-compose`
 
-## [Deploying Async LLM-Chat with Message History](./pages/dj_async_chat.md)
+---
+## [Adding React to Django](./pages/dj_react_frontend.md)
 
-`Django Channels` `WebSocket` `Redis` `LLM-Chat` `Railway` `Docker`
+ This combination offers an improved user experience compared to traditional Django templates, allowing for smoother interactions and a more modern web application feel.
+
+`Node` `React` `Staticfiles` `Setting up` `Hello World` `Docker` `GitHub`
+
+---
+## [Custom User Model](./pages/dj_customuser.md)
+
+Creating a custom user model in Django is a crucial step for developers who need to extend the default user functionalities to fit their application's unique requirements.
+
+`Models` `migration` `settings.py` `forms.py` `admin.py`
+
+---
+## [Installation and Setting Up](./pages/dj_installation.md)
+
+Getting started with Django, a popular Python web framework, is essential for developing high-performance web applications.
+
+`Prerequisites` `Pipenv` `Installation` `Setting up` `Hello World` `Database`
+
+
+
  
  
