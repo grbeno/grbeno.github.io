@@ -10,7 +10,7 @@ Deploying a real-time AI chat application using Channels and WebSockets, with Re
 
 ---
 
-## [Django with React Consuming LLM API](./pages/dj_llmlang.md)
+## [Django with React Consuming LLM-API](./pages/dj_llmlang.md)
 
 A web application that consumes an LLM API to implement a language AI assistant, which helps with English correction and translation.
 
