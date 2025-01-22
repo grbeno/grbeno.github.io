@@ -2,7 +2,6 @@
 layout: default
 ---
 
----
 ## [Deploying Async LLM-Chat with Message History](./pages/dj_async_chat.md)
 
 Deploying a real-time AI chat application using Channels and WebSockets, with Redis as the channel layer for message history.
@@ -11,7 +10,7 @@ Deploying a real-time AI chat application using Channels and WebSockets, with Re
 
 ---
 
-## [Django with React Consuming LLM API](./pages/dj_deployment.md)
+## [Django with React Consuming LLM API](./pages/dj_llmlang.md)
 
 A web application that consumes an LLM API to implement a language AI assistant, which helps with English correction and translation.
 
