@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-
+---
 ## [Deploying Async LLM-Chat with Message History](./pages/dj_async_chat.md)
 
 Deploying a real-time AI chat application using Channels and WebSockets, with Redis as the channel layer for message history.
