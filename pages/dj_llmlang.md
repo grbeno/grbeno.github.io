@@ -560,6 +560,7 @@ createRoot(document.getElementById('root')).render(
 ```
 npm run build
 ```
+### Run the Application
 ```
 cd ..
 ```
