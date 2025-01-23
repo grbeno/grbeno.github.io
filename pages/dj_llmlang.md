@@ -148,9 +148,9 @@ env.read_env()
 
 class Assistant:
 
-    def __init__(self, request, prompt):
+    def __init__(self, request):
         self.request = request
-        self.prompt = prompt
+        self.prompt = request.data['prompt']
         self.model = 'gpt-4o-mini'
         self.role = """Your response should be the correction of the given prompt. 
         If the prompt is already correct, respond with 'Your english is correct'."""
@@ -340,7 +340,6 @@ function App() {
 
   // path
   const path = import.meta.env.VITE_APP_URL + '/api/chat/';
-  // localhost: /language-assistant/, production: /lang-assistant
   const pathname = window.location.pathname.endsWith('/') ? window.location.pathname.slice(0, -1) : window.location.pathname;
 
   const postPrompt = (e) => {
