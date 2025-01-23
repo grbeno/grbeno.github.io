@@ -131,10 +131,10 @@ pip install openai
 ```
 If you choose a provider other than OpenAI, always read it's documentation to how to apply the API.
 
-Let's integrate and costumize the LLM-API in a new `llm-api.py` file.
+Let's integrate and costumize the LLM-API in a new `llm_api.py` file.
 
 ```python
-# langapp/llm-api.py
+# langapp/llm_api.py
 
 import openai
 from environs import Env
@@ -229,6 +229,9 @@ class LangAI(APIView):
 ```
 
 **langapp/urls.py**
+
+Create this file and update it with the pattern below.
+
 ```python
 # langapp/urls.py
 
@@ -240,6 +243,9 @@ urlpatterns = [
 ]
 ```
 **config/urls.py**
+
+Update with langapp.urls to the config.urls pattern list.
+
 ```python
 # config/urls.py
 
@@ -260,6 +266,8 @@ urlpatterns = [
     re_path(r'^.*', React.as_view(), name='frontend'),
 ]
 ```
+**Cors**
+
 ```
 pip install django-cors-headers
 ```
@@ -268,5 +276,291 @@ pip install django-cors-headers
 Add 'corsheaders' to the `INSTALLED_APPS`.
 
 Add 'corsheaders.middleware.CorsMiddleware' to the `MIDDLEWARE`.
+> CorsMiddleware should be placed as high as possible, especially before any middleware that can generate responses such as Django’s CommonMiddleware or Whitenoise’s WhiteNoiseMiddleware. If it is not before, it will not be able to add the CORS headers to these responses. [docs](https://github.com/adamchainz/django-cors-headers?tab=readme-ov-file#setup)
 
 ### Setting up frontend
+
+```
+cd frontend
+```
+**Install axios**
+```
+npm install axios
+```
+**Create src/axios.js and add this:**
+```javascript
+
+import axios from 'axios';
+
+// Export base url from env variable
+const baseURL = import.meta.env.VITE_APP_URL;
+
+// Get csrf token
+const getCSRFToken = () => {
+    const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/);
+    return csrfToken ? csrfToken[1] : null;
+};
+
+// Axios instance
+const axiosInstance = axios.create({
+    baseURL: baseURL,
+    timeout: 5000,
+    headers: {
+        'X-CSRFToken': getCSRFToken(),
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    },
+});
+
+export default axiosInstance;
+
+```
+**Update `App.jsx`**
+```javascript
+
+import React, {useEffect, useState} from 'react';
+import axiosInstance from './axios';
+import './App.css';
+
+function App() {
+
+  const [response, setResponse] = useState([]);
+  const [formData, setFormData] = useState({ prompt: '', });
+  const [isLoading, setIsLoading] = useState(false);
+  const [fadeIn, setFadeIn] = useState(false);
+
+  // path
+  const path = import.meta.env.VITE_APP_URL + '/api/chat/';
+  // localhost: /language-assistant/, production: /lang-assistant
+  const pathname = window.location.pathname.endsWith('/') ? window.location.pathname.slice(0, -1) : window.location.pathname;
+
+  const postPrompt = (e) => {
+    setIsLoading(true);  // spinner on
+    e.preventDefault();
+    axiosInstance.post(path, {
+      prompt: formData.prompt,
+    })
+    .then((res) => {
+      // console.log(res);
+      setFormData({ prompt: '', });
+      setResponse((response) => [...response, res.data]); 
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
+  const deleteItem = (id) => {
+    axiosInstance.delete(path)
+    .then((res) => {
+      // get answer
+      axiosInstance.get(path)
+      .then((res) => {
+          setResponse(res.data);
+      })  
+      .catch((error) => {
+          console.log(error);
+      });  
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
+  // useEffect for getting data
+  useEffect(() => {
+    // get answer
+    console.log(path); // test
+    axiosInstance.get(path)
+    .then((res) => {
+      setResponse(res.data);
+    })  
+    .catch((error) => {
+      console.log(error);
+    });
+  }, [path]);
+
+  // useEffect for spinner
+  useEffect(() => {
+    setIsLoading(false);  // spinner off when goes to the bottom of the response list
+  }, [response]);
+
+  useEffect(() => {
+    // Trigger the fade-in effect when the component mounts
+    setFadeIn(true);
+  }, []);
+
+   // handle input
+  const handleInput = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+  
+  return (
+    <div className="App">
+     <h1>Corrector</h1>
+     <h1> * </h1>
+      <div className="response">
+        {window.location.port === '5173' ? (
+          <>
+            <div className="prompt">This is an english language corrector.</div>
+            <div className='correction'>Your English is correct.</div>
+            <div className='translation'>Ez egy angol nyelvhelyesség-javító.</div>
+          </>
+        ) : null}
+        {response.map((item) => (
+          <div key={item.id} className={`item ${fadeIn ? 'fade-in' : ''}`}> 
+            <div className="prompt">{item.prompt}</div>
+            <div className='correction'>{item.correction}</div>
+            <div className='translation'>{item.translation}</div>
+          </div>
+        ))}
+        {isLoading && <div className="loading">Loading...</div>}
+      </div>
+
+      <form onSubmit={postPrompt}>
+        <h1> * </h1>
+        <textarea
+          type="text"
+          name="prompt"
+          value={formData.prompt}
+          onChange={handleInput}
+          placeholder="Enter your text"
+          required
+          />
+        <button type="submit">Submit</button>
+      </form>
+      <button className="delete" onClick={deleteItem}>Delete</button>
+    </div>
+  );
+}
+
+export default App;
+
+```
+**Update `App.css`**
+```css
+
+body {
+  background: #324065;
+}
+
+.App {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  color: #0c1823;
+}
+
+h1 {
+  color: #d1a266;
+}
+
+.loading {
+  color: #d1a266;
+}
+
+textarea[type="text"] {
+  width: 600px;
+  height: 150px;
+  font-size: 16px;
+  text-align: left;
+  vertical-align: top;
+  border-radius: 8px;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 605px;
+  background-color: #fdd95d;
+  color: black;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.delete {
+  
+  background-color: #cd4a33;
+  
+}
+
+.delete:hover {
+  background-color: #d21f0a;
+}
+
+.prompt,
+.correction,
+.translation {
+  justify-content: center;
+  display: flex;
+  width: 590px;
+  padding: 8px 12px;
+  margin: 8px auto;
+  border-radius: 8px;
+}
+
+.prompt {
+  background-color: #add4e5;
+}
+
+.correction {
+  background-color: #fff7b3;
+}
+
+.translation {
+  background-color: #add4e5;
+  margin-bottom: 32px;
+}
+
+
+```
+**Create `Provider.jsx`**
+```javascript
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import App from './App';
+
+const Provider = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<App />} />
+            </Routes>
+        </Router>
+    );
+};
+
+export default Provider;
+
+```
+**Update `main.jsx`**
+```javascript
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import Provider from './Provider'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Provider />
+  </StrictMode>,
+
+```
+```
+npm run build
+```
+```
+cd ..
+```
+```
+python manage.py runserver
+```
