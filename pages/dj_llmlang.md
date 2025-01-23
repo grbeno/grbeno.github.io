@@ -84,6 +84,7 @@ class Language(models.Model):
 
     def __str__(self):
         return self.prompt
+        
 ```
 **Migrate the data**
 
@@ -107,6 +108,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
 }
+
 ```
 **langapp/serializers.py**
 
@@ -187,6 +189,7 @@ class Assistant:
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
 ```
 **langapp/views.py**
 
@@ -226,6 +229,7 @@ class LangAI(APIView):
 			return Response({'message': 'Item deleted successfully.'})
 		except Language.DoesNotExist:
 			return Response({'error': 'Item not found.'})
+
 ```
 
 **langapp/urls.py**
@@ -241,6 +245,7 @@ from .views import LangAI
 urlpatterns = [
     path('api/chat/', LangAI.as_view(), name='chat'),
 ]
+
 ```
 **config/urls.py**
 
@@ -265,6 +270,7 @@ urlpatterns = [
     # React
     re_path(r'^.*', React.as_view(), name='frontend'),
 ]
+
 ```
 **Cors**
 
