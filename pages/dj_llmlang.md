@@ -12,7 +12,7 @@ You can find here the [GitHub repository](https://github.com/grbeno/dj-rjs-templ
 
 **Move the files to a new directory. Let's name it `llmlang`.**
 
-**Open CLI and change the directory using the `$ cd ` command**
+**Open CLI and change the directory using the `$ cd llmlang` command**
 
 **Create a virtual environment for the project**
     
@@ -43,7 +43,7 @@ SSL_REQUIRE=False
 ```
 **Create new database**
     
-Installing postgres on your device is necessarry.
+Installing Postgres on your device is necessarry.
 
 Open CLI
 
@@ -54,8 +54,12 @@ Create a database, let's name it langapp.
 ```
 CREATE DATABASE langapp WITH OWNER postgres; 
 ```
-Add `DATABASE_URL=postgresql://postgres:<password>@localhost:5432/langapp` to the `.env`
+Update `.env`
+```
+# .env
 
+DATABASE_URL=postgresql://postgres:<password>@localhost:5432/langapp
+```
 **Migrate data**
 ```
 python manage.py makemigrations accounts
@@ -98,7 +102,7 @@ Install Django REST framework and update `config/settings.py`
 ```
 pip install djangorestframework
 ```
-Add 'rest-framework' to the `INSTALLED_APPS`. And the next setup to the end of the file:
+Add 'rest-framework' to the `INSTALLED_APPS`. And the next initial setup to the end of the file:
 ```python
 # config/settings.py
 
@@ -127,11 +131,11 @@ class LanguageSerializer(serializers.ModelSerializer):
 ```
 **langapp/llm-api.py**
 
-You need an API key from OpenAI e.g.
+You need an API key from OpenAI or another provider.
 ```
 pip install openai
 ```
-If you choose a provider other than OpenAI, always read it's documentation to how to apply the API.
+If you choose a provider other than OpenAI, always read its documentation to how to apply the API.
 
 Let's integrate and costumize the LLM-API in a new `llm_api.py` file.
 
@@ -249,7 +253,7 @@ urlpatterns = [
 ```
 **config/urls.py**
 
-Update with langapp.urls to the config.urls pattern list.
+Update the config.urls pattern list with langapp.urls.
 
 ```python
 # config/urls.py
@@ -272,7 +276,7 @@ urlpatterns = [
 ]
 
 ```
-**Cors**
+**CORS**
 
 ```
 pip install django-cors-headers
