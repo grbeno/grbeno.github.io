@@ -2,6 +2,13 @@
 layout: default
 ---
 ---
+## [Deploying Django & React Project Using both ASGI and WSGI](./pages/pages/dj_deploy_asgi_wsgi.md)
+
+Deploying a web application based on the previous two that has both ASGI and WSGI applications.
+
+`ASGI` `WSGI` `Railway` `Docker`
+
+---
 ## [Deploying Async LLM-Chat with Message History](./pages/dj_async_chat.md)
 
 Deploying a real-time AI chat application using Channels and WebSockets, with Redis as the channel layer for message history.
@@ -9,7 +16,6 @@ Deploying a real-time AI chat application using Channels and WebSockets, with Re
 `Django Channels` `WebSocket` `Redis` `LLM-Chat` `Railway` `Docker`
 
 ---
-
 ## [Integrating LLM Using API to a Django and React App](./pages/dj_llmlang.md)
 
 A web application that consumes an LLM API to implement a language AI assistant, which helps with English correction and translation.
