@@ -287,8 +287,16 @@ cd frontend
 ```
 npm install axios
 ```
-**Create src/axios.js and add this:**
+**Create `frontend/.env`**
+```
+# frontend/.env
+
+export VITE_APP_URL=http://localhost:8000
+
+```
+**Create src/axios.js and add the code:**
 ```javascript
+// src/axios.jsx
 
 import axios from 'axios';
 
@@ -317,6 +325,7 @@ export default axiosInstance;
 ```
 **Update `App.jsx`**
 ```javascript
+// src/App.jsx
 
 import React, {useEffect, useState} from 'react';
 import axiosInstance from './axios';
@@ -442,6 +451,7 @@ export default App;
 ```
 **Update `App.css`**
 ```css
+/* src/App.css */
 
 body {
   background: #324065;
@@ -523,36 +533,19 @@ button:hover {
 
 
 ```
-**Create `Provider.jsx`**
-```javascript
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import App from './App';
-
-const Provider = () => {
-    return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<App />} />
-            </Routes>
-        </Router>
-    );
-};
-
-export default Provider;
-
-```
 **Update `main.jsx`**
 ```javascript
+// src/main.jsx
 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import Provider from './Provider'
+import App from './App'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Provider />
+    <App />
   </StrictMode>,
+)
 
 ```
 ```
