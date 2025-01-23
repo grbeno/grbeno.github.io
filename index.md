@@ -2,7 +2,7 @@
 layout: default
 ---
 ---
-## [Deploying Django & React Project Using both ASGI and WSGI](./pages/pages/dj_deploy_asgi_wsgi.md)
+## [Deploying Django & React Project Using both ASGI and WSGI](./pages/dj_deploy_asgi_wsgi.md)
 
 Deploying a web application based on the previous two that has both ASGI and WSGI applications.
 
