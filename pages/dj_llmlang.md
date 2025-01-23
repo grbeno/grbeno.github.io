@@ -1,4 +1,4 @@
-## Django with React Consuming LLM-API
+## Integrating LLM Using API to a Django and React App
 
 This LLM-API consumer, that I am presenting here, is built upon a Django application using React as static files. With the API consumer, I implemented a language corrector and translator application, which is a kind of playground to try creating something great.
 
