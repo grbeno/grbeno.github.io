@@ -324,7 +324,7 @@ export default axiosInstance;
 
 ```
 **Update `App.jsx`**
-```javascript
+```jsx
 // src/App.jsx
 
 import React, {useEffect, useState} from 'react';
@@ -406,7 +406,7 @@ function App() {
       [event.target.name]: event.target.value,
     });
   };
-  
+
   return (
     <div className="App">
      <h1>Corrector</h1>
@@ -534,7 +534,7 @@ button:hover {
 
 ```
 **Update `main.jsx`**
-```javascript
+```jsx
 // src/main.jsx
 
 import { StrictMode } from 'react'
