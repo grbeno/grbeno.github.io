@@ -1,4 +1,4 @@
-### Deploying Django & React Project Using both ASGI and WSGI
+### Deploying Django Project Using both ASGI and WSGI
 
 This deployment is based on the experiences from the previous two posts, except for a few updates.
 
