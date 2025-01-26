@@ -288,6 +288,19 @@ Add 'corsheaders' to the `INSTALLED_APPS`.
 Add 'corsheaders.middleware.CorsMiddleware' to the `MIDDLEWARE`.
 > CorsMiddleware should be placed as high as possible, especially before any middleware that can generate responses such as Django’s CommonMiddleware or Whitenoise’s WhiteNoiseMiddleware. If it is not before, it will not be able to add the CORS headers to these responses. [docs](https://github.com/adamchainz/django-cors-headers?tab=readme-ov-file#setup)
 
+```python
+# config/settings.py
+
+# CORS
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'http://localhost:8000',
+    'https://<example>up.railway.app',
+    'https://<example>.com',
+]
+```
+
 ### Setting up frontend
 
 ```
