@@ -247,13 +247,20 @@ urlpatterns = [
 
 ]
 ```
+
+```python
+# config/settings.py
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+```
+
 **Update files on the frontend as well**
 
 Add this `<script>` to the `<head>` tag in `frontend/index.html`
 
-```jsx
+```python
 <script>
-  window.WS_URL = '{{ WS_URL|safe }}';
+  window.WS_URL = "{{ WS_URL|safe }}";
 </script>
 ```
 
