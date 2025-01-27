@@ -251,9 +251,9 @@ urlpatterns = [
 
 Add this `<script>` to the `<head>` tag in `frontend/index.html`
 
-```javascript
+```jsx
 <script>
-  window.WS_URL = "{{ WS_URL|safe }}";
+  window.WS_URL = '{{ WS_URL|safe }}';
 </script>
 ```
 
