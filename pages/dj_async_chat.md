@@ -256,10 +256,10 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 **Update files on the frontend as well**
 
-Add this `<script>` to the `<head>` tag in `frontend/index.html`
+Add the `WS_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html`
 
-```json
-window.WS_URL = "{{ WS_URL|safe }}";
+```javascript
+window.WS_URL = "";
 ```
 
 Finally, modify the websocket url in `src/Chat.jsx`, call `window.WS_URL` instead of the hard coded url.
