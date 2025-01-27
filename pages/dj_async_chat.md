@@ -194,22 +194,23 @@ pip install twisted[tls,http2]
 
 #### Environment variables
 
-Django
+**Django**
 
 Set DEBUG=True, SECRET_KEY in `.env`. Update also `config/settings.py` with `SECRET_KEY = env.str('SECRET_KEY')` and `DEBUG = env.bool('DEBUG', default=False)`.
 
-React
+**React**
 
-I also set the environment variables in Django for use in React.
+I will set the environment variables in Django for use in React.
 
 Create a Django app with the name "React".
 
 ```
 python manage.py startapp react
 ```
-After the app is done, don't forget to add it to `INTSALLED_APPS=[ ... ]` in `config/settings.py`.
+After the app is done, don't forget to add it to `INTSALLED_APPS=[ ..., react, ]` in `config/settings.py`.
 
-react/views.py
+**react/views.py**
+
 ```python
 # react/views.py
 
@@ -246,7 +247,7 @@ urlpatterns = [
 
 ]
 ```
-Update files on the frontend as well.
+**Update files on the frontend as well**
 
 Add this `<script>` to the `<head>` tag in `frontend/index.html`
 
