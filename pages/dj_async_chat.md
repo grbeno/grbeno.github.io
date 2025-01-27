@@ -258,7 +258,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 Add this `<script>` to the `<head>` tag in `frontend/index.html`
 
-```python
+```html
 <script>
   window.WS_URL = "{{ WS_URL|safe }}";
 </script>
