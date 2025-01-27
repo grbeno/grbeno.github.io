@@ -200,7 +200,7 @@ Set DEBUG=True, SECRET_KEY in `.env`. Update also `config/settings.py` with `SEC
 
 **React**
 
-I will set the environment variables in Django for use in React.
+Instead of set the environment variables in React, I will set protocols  in Django.
 
 Create a Django app with the name "React".
 
