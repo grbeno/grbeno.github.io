@@ -258,8 +258,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 Add this `<script>` to the `<head>` tag in `frontend/index.html`
 
-```django
-window.WS_URL = "{{ WS_URL|safe }};"
+```json
+window.WS_URL = "{{ WS_URL|safe }}";
 ```
 
 Finally, modify the websocket url in `src/Chat.jsx`, call `window.WS_URL` instead of the hard coded url.
