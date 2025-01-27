@@ -198,6 +198,66 @@ Django
 
 Set DEBUG=True, SECRET_KEY in `.env`. Update also `config/settings.py` with `SECRET_KEY = env.str('SECRET_KEY')` and `DEBUG = env.bool('DEBUG', default=False)`.
 
+React
+
+I also set the environment variables in Django for use in React.
+
+Create a Django app with the name "React".
+
+```
+python manage.py startapp react
+```
+After the app is done, don't forget to add it to `INTSALLED_APPS=[ ... ]` in `config/settings.py`.
+
+react/views.py
+```python
+# react/views.py
+
+from django.views.generic import TemplateView
+
+class IndexView(TemplateView):
+    template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Check for forwarded protocol (for proxies like Railway)
+        forwarded_proto = self.request.META.get('HTTP_X_FORWARDED_PROTO')
+        is_secure = self.request.is_secure() or forwarded_proto == 'https'
+        
+        # Set WS/WSS protocol
+        ws_protocol = 'wss://' if is_secure else 'ws://'
+        context['WS_URL'] = f"{ws_protocol}{self.request.get_host()}"
+        
+        return context
+```
+Modify the url pattern in `config/urls.py`
+
+```python
+# config/urls.py
+# ...
+from react.views import IndexView
+
+urlpatterns = [
+  
+  # ...
+  
+  re_path(r'^.*$', IndexView.as_view()),
+
+]
+```
+Update files on the frontend as well.
+
+Add this `<script>` to the `<head>` tag in `frontend/index.html`
+
+```jsx
+<script>
+  window.WS_URL = "{{ WS_URL|safe }}";
+</script>
+```
+
+Finally, modify the websocket url in `src/Chat.jsx`, call `window.WS_URL` instead of the hard coded url.
+
 #### Serving static files
 
 ```python
@@ -206,7 +266,6 @@ Set DEBUG=True, SECRET_KEY in `.env`. Update also `config/settings.py` with `SEC
 # Static files ...
 
 STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))  # production
-
 ```
 Adding whitenoise to collect the static files of the project
 
