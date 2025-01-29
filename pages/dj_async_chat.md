@@ -232,7 +232,7 @@ class IndexView(TemplateView):
         
         return context
 ```
-Modify the url pattern in `config/urls.py`
+Change the `chat.views.React` url-pattern to `react.views.IndexView` in `config/urls.py`
 
 ```python
 # config/urls.py
@@ -256,7 +256,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 **Update files on the frontend as well**
 
-Add the `WS_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and calling with `windows.WS_URL` in Chat.jsx.
+Add the `WS_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and call it with `windows.WS_URL` in `Chat.jsx`.
 
 #### Serving static files
 

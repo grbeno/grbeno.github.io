@@ -49,6 +49,8 @@ class IndexView(TemplateView):
         return context
 ```
 
-Add the `BACKEND_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and calling with `windows.BACKEND_URL` in axios.jsx and where it is neccessary.
+**Update files in `frontend\`**
 
-Add the `WS_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and calling with `windows.WS_URL` in Chat.jsx.
+Add the `BACKEND_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and call it with `windows.BACKEND_URL` in `axios.jsx` and wherever necessary.
+
+Add the `WS_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and call it with `windows.WS_URL` in `Chat.jsx`.
