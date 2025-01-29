@@ -1,6 +1,10 @@
 ### Deploying Django Project Using both ASGI and WSGI
 
-This deployment is based on the experiences from the previous two posts, except for a few updates.
+This deployment is based on the experiences from the **previous two posts**.
+
+[Deploying Async LLM-Chat with Message History](https://grbeno.github.io/pages/dj_async_chat.html)
+
+[Integrating LLM Using API to a Django and React App](https://grbeno.github.io/pages/dj_llmlang.html)
 
 **config/settings.py**
 
