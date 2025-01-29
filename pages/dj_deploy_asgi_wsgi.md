@@ -19,7 +19,9 @@ In the `Procfile`, you should add and parameterize both of the servers: My choic
 web: gunicorn config.wsgi:application -b 0.0.0.0 & daphne -b 0.0.0.0 -p $PORT config.asgi:application
 ```
 
-**Set also HTTP/HTTPS protocol in react/views.py**
+**react/views.py**
+
+Set also HTTP/HTTPS protocol in `IndexView`.
 
 ```python
 # react/views.py
@@ -47,6 +49,6 @@ class IndexView(TemplateView):
         return context
 ```
 
-Add the `{{BACKEND_URL|safe}}` `<script>` to the `<head>` tag in `frontend/index.html` and calling with `windows.BACKEND_URL` in axios.jsx and where it is neccessary.
+Add the `BACKEND_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and calling with `windows.BACKEND_URL` in axios.jsx and where it is neccessary.
 
-Add the `{{WS_URL|safe}}` `<script>` to the `<head>` tag in `frontend/index.html` and calling with `windows.WS_URL` in Chat.jsx.
+Add the `WS_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and calling with `windows.WS_URL` in Chat.jsx.
