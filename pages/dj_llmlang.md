@@ -38,8 +38,6 @@ python -c 'import secrets;print(secrets.token_hex(32))'
 # .env
 
 SECRET_KEY=<generated-secret-key>
-SSL_REQUIRE=False
-
 ```
 **Create new database**
     
@@ -59,6 +57,7 @@ Update `.env`
 # .env
 
 DATABASE_URL=postgresql://postgres:<password>@localhost:5432/langapp
+SSL_REQUIRE=False
 ```
 **Migrate data**
 ```

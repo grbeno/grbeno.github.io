@@ -182,6 +182,12 @@ This application will be deployed to [Railway](https://railway.com/new).
 
 #### Create Procfile
 
+Install gunicorn
+
+```
+pip install gunicorn
+```
+
 ```
 web: daphne -b 0.0.0.0 -p 8080 config.asgi:application
 ```
@@ -295,15 +301,9 @@ Commit and Push the files to a repo in GitHub.
 
 #### Configuring Railway
 
-- For building use nixpacks, so add `Dockerfile` `docker-compose.yml` and any Docker-related files for example `.dockerignore` to `.gitignore`
+- For building use Railway builder, so add `Dockerfile` `docker-compose.yml` and any Docker-related files for example `.dockerignore` to `.gitignore`
 
-- Create `nixpacks.toml` for building
-  ```toml
-  providers = ["python"]
-  ```
-  _We don't need "node" among the providers, because we are using React as static files on the backend._
-
-- The builder in Railway recognizes the nixpacks file and starts to build.
+- The builder in Railway recognizes the missing Docker-related files and starts to build.
 
 - Set Railway environment variables: SECRET_KEY, OPENAI_API_KEY
 , REDISHOST
