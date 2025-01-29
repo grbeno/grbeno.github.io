@@ -187,7 +187,7 @@ Install gunicorn
 ```
 pip install gunicorn
 ```
-
+Procfile
 ```
 web: daphne -b 0.0.0.0 -p 8080 config.asgi:application
 ```
@@ -310,7 +310,7 @@ Commit and Push the files to a repo in GitHub.
 
 - Set Custom Start Command in Settings > Deploy: `web: daphne -b 0.0.0.0 -p 8080 config.asgi:application`. Websocket port and URL port should be the same.
 
-- Update `src/Chat.jsx` with the new websocket url: `'wss://... .up.railway.app/ws/chat/';`. _Don't forget to run build and collectstatic!_
+- Update `src/Chat.jsx` with the new websocket url: `'wss://... .up.railway.app/ws/chat/';` => `window.WS_URL + '/ws/chat/'`. _Don't forget to run build and collectstatic!_
 
 - Set ALLOWED_HOSTS=['... .up.railway.app'] and CSRF_TRUSTED_ORIGINS=['https://... .up.railway.app'] in `config/settings.py` with the Railway's data.
 
