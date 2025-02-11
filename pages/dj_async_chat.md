@@ -305,7 +305,7 @@ Commit and Push the files to a repo in GitHub.
 
 - The builder in Railway recognizes the missing Docker-related files and starts to build.
 
-- Set Railway environment variables: SECRET_KEY, OPENAI_API_KEY
+- Set Railway environment variables: SECRET_KEY, OPENAI_API_KEY 
 , REDISHOST
 
 - Set Custom Start Command in Settings > Deploy: `web: daphne -b 0.0.0.0 -p 8080 config.asgi:application`. Websocket port and URL port should be the same.
