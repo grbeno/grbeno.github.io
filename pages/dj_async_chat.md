@@ -123,7 +123,7 @@ Before building the Docker image, I update the requirements.txt file with the la
 pip freeze > requirements.txt
 ```
 #### Dockerfile
-```docker
+```dockerfile
 # Pull base image
 FROM python:3.11-slim-bullseye
 
@@ -206,7 +206,43 @@ Set DEBUG=True, SECRET_KEY in `.env`. Update also `config/settings.py` with `SEC
 
 **React**
 
-Instead of setting the environment variables in React, I will do this in Django.
+#### 1. Installing Node in a Python Docker image to recognize the host during build time
+
+When the command `npm run build` runs outside of the Docker image, it is necessary to set up a dynamic host and protocol checker.
+
+To use an environment variable, add the Node installation command inside the Python image. Therefore, the Dockerfile should be updated with the following:
+
+```dockerfile
+# ...
+
+# Set environment variables
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Install Node.js (example for Node 20.x)
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Copy frontend files and build React app
+WORKDIR /app/frontend
+COPY ./frontend/package*.json ./
+RUN npm install
+COPY ./frontend ./
+RUN npm run build
+
+# Set work directory
+WORKDIR /app
+
+# ...
+```
+The variable names with CRA need to start with `REACT_APP`, while in the case of Vite, they should start with `VITE_`.
+
+#### 2. Checking host and protocol dynamically without installing Node in Python Docker image
+
+In this case, instead of setting the environment variables in React, use the `get_host()` method and `HTTP_X_FORWARDED_PROTO` in Django.
 
 Create a Django app with the name "React".
 
@@ -262,7 +298,13 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 **Update files on the frontend as well**
 
-Add the `WS_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and call it with `windows.WS_URL` in `Chat.jsx`.
+Add the `WS_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and call it with `windows.WS_URL` in `Chat.jsx`:
+
+`<script>` window.WS_URL = "{{ WS_URL|safe }}"; `</script>`
+```javascript
+// frontend/src/Chat.jsx
+const websocket = new WebSocket(window.WS_URL + '/ws/chat/');
+```
 
 #### Serving static files
 
