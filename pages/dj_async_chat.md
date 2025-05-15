@@ -210,7 +210,7 @@ Set DEBUG=True, SECRET_KEY in `.env`. Update also `config/settings.py` with `SEC
 
 When the command `npm run build` runs outside of the Docker image, it is necessary to set up a dynamic host and protocol checker.
 
-To use an environment variable, add the Node installation command inside the Python image. Therefore, the Dockerfile should be updated with the following:
+To use an environment variable, add the Node installation command inside the Python image. Therefore, the Dockerfile should be updated with the node installation and other copy and build commands:
 
 ```dockerfile
 # ...
@@ -300,7 +300,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 Add the `WS_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and call it with `windows.WS_URL` in `Chat.jsx`:
 
-`<script>` window.WS_URL = "{{ WS_URL|safe }}"; `</script>`
+`<script>` window.WS_URL = ""; `</script>`
 ```javascript
 // frontend/src/Chat.jsx
 const websocket = new WebSocket(window.WS_URL + '/ws/chat/');
