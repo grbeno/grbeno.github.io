@@ -240,6 +240,8 @@ WORKDIR /app
 ```
 The variable names with CRA need to start with `REACT_APP`, while in the case of Vite, they should start with `VITE_`.
 
+`Note:` It seems multi-stage builds don't work in Railway. :confused:
+
 #### 2. Checking host and protocol dynamically without installing Node in Python Docker image
 
 In this case, instead of setting the environment variables in React, use the `get_host()` method and `HTTP_X_FORWARDED_PROTO` in Django.
