@@ -265,7 +265,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
     <script> 
-      window.WS_URL = "{{ WS_URL|safe}}";
+      window.WS_URL =  WS_URL|safe ;
     </script>
   </head>
   <body>
