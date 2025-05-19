@@ -204,56 +204,16 @@ pip install twisted[tls,http2]
 
 Set DEBUG=True, SECRET_KEY in `.env`. Update also `config/settings.py` with `SECRET_KEY = env.str('SECRET_KEY')` and `DEBUG = env.bool('DEBUG', default=False)`.
 
-**React**
-
-#### 1. Installing Node in a Python Docker image to recognize the host during build time
-
-When the command `npm run build` runs outside of the Docker image, it is necessary to set up a dynamic host and protocol checker.
-
-To use an environment variable, add the Node installation command inside the Python image. Therefore, the Dockerfile should be updated with the node installation and other copy and build commands:
-
-```dockerfile
-# ...
-
-# Set environment variables
-ENV PIP_DISABLE_PIP_VERSION_CHECK 1
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Install Node.js (example for Node 20.x)
-RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Copy frontend files and build React app
-WORKDIR /app/frontend
-COPY ./frontend/package*.json ./
-RUN npm install
-COPY ./frontend ./
-RUN npm run build
-
-# Set work directory
-WORKDIR /app
-
-# ...
-```
-The variable names with CRA need to start with `REACT_APP`, while in the case of Vite, they should start with `VITE_`.
-
-`Note:` It seems multi-stage builds don't work in Railway. :confused:
-
-#### 2. Checking host and protocol dynamically without installing Node in Python Docker image
-
-In this case, instead of setting the environment variables in React, use the `get_host()` method and `HTTP_X_FORWARDED_PROTO` in Django.
-
-Create a Django app with the name "React".
+Create a Django app with the name "React". *_It doesn't necesarry, you can add the view to another app as well._
 
 ```
 python manage.py startapp react
 ```
 After the app is done, don't forget to add it to `INTSALLED_APPS=[ ..., react, ]` in `config/settings.py`.
 
-**react/views.py**
+#### 1. Checking host and protocol dynamically
+
+For checking host, instead of setting the environment variables in React, use the `get_host()` method and `HTTP_X_FORWARDED_PROTO` in Django.
 
 ```python
 # react/views.py
@@ -276,8 +236,7 @@ class IndexView(TemplateView):
         
         return context
 ```
-Change the `chat.views.React` url-pattern to `react.views.IndexView` in `config/urls.py`
-
+Change the chat.views.React url-pattern to react.views.IndexView in config/urls.py
 ```python
 # config/urls.py
 # ...
@@ -291,22 +250,42 @@ urlpatterns = [
 
 ]
 ```
-
 ```python
 # config/settings.py
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ```
-
-**Update files on the frontend as well**
-
-Add the `WS_URL|safe` `<script>` to the `<head>` tag in `frontend/index.html` and call it with `windows.WS_URL` in `Chat.jsx`:
-
-`<script>` window.WS_URL = ""; `</script>`
+```html
+<!-- frontend/src/index.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <script> 
+      window.WS_URL = "{{ WS_URL|safe}}";
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+```
 ```javascript
-// frontend/src/Chat.jsx
+// frontend/src/AI/chat.jsx
+
+// Update websocket instance
 const websocket = new WebSocket(window.WS_URL + '/ws/chat/');
 ```
+
+**React**
+
+`React var names:` The variable names with CRA need to start with `REACT_APP`, while in the case of Vite, they should start with `VITE_`.
+
+`Note:` It seems multi-stage builds don't work in Railway. By the way, it is worth trying to install and build Node inside a Python Docker image.
 
 #### Serving static files
 
