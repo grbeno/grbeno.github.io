@@ -1,5 +1,5 @@
-title: Django
-description: Django topics
+title: Developer diary
+description: Django, Python, React, Docker, Railway, Gen-AI
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
