@@ -2,6 +2,14 @@
 layout: default
 ---
 ---
+## [Executing Code in E2B Sandbox](./pages/e2b_example.md)
+
+An example application running in the console using E2B to execute Claude model-generated code and the yfinance library to fetch information about stocks.
+
+`Python` `E2B` `Claude` `Rich`
+
+---
+---
 ## [Deploying Django Project Using both ASGI and WSGI](./pages/dj_deploy_asgi_wsgi.md)
 
 Deploying a web application based on the previous two that has both ASGI and WSGI applications.
