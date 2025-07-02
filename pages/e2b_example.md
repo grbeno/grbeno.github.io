@@ -20,7 +20,7 @@ I will use E2B's sandbox. You can learn from them and their goals [here](https:/
 
 After signing up find and copy the API-key at dashboard and paste it to an `.env` file. 
 
-As for the LLM, I will use [Claude Anthropic API](https://docs.anthropic.com/en/api/overview) here. You can get API-key after registartion.
+As for the LLM, I will use [Claude Anthropic API](https://docs.anthropic.com/en/api/overview) here. You can get API-key after registartion or use your own from [other provider](https://e2b.dev/docs/quickstart/connect-llms).
 ```env
 # .env
 
