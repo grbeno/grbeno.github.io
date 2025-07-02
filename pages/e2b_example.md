@@ -18,12 +18,28 @@ Sandbox originally refers to a safe playground for children. The technical conce
 
 I will use E2B's sandbox. You can learn from them and their goals [here](https://e2b.dev/).
 
-After signing up find and copy the API-key at dashboard and paste it to an `.env` file.
-```
-E2B_API_KEY=e2b_***
-```
-First step is to install the E2B package, which is **pip** in my case.
+After signing up find and copy the API-key at dashboard and paste it to an `.env` file. 
 
+As for the LLM, I will use [Claude Anthropic API](https://docs.anthropic.com/en/api/overview) here. You can get API-key after registartion.
+```env
+# .env
+
+E2B_API_KEY=e2b_***
+ANTHROPIC_API_KEY=***
 ```
-pip install e2b-code-interpreter python-dotenv
+First step is to install the E2B package and other dependencies of our project.
+```
+pip install e2b-code-interpreter python-dotenv anthropic rich
+```
+For the Sandbox persistency.
+```
+pip install e2b-code-interpreter==1.2.0b5
+```
+#### File structure
+```
+|- e2b_project\
+|  |- .venv\
+|  |- .env
+|  |- main.py
+|  |- utils.py
 ```
