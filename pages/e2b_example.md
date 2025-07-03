@@ -2,13 +2,13 @@
 
 I guess this is not exactly a review because I tested only a few features of the **E2B Sandbox**. I was just curious how to implement a solution that **interprets LLM-generated Python code** and returns its result in a custom environment. By now, I have generated chat responses using LLMs in text format, so it would be a new experience if I could generate not just the code but also invoke its return value.
 
-Although my original plan was to implement this inside a web application and write a post about that, I would rather choose CLI on desktop for now.
+Although my original plan was to implement this inside a web application and write a post about that, I would rather choose PowerShell on desktop for now.
 
-The CLI looks usually boring, but **using the Rich Python library** can enhance the experience. By the way, I am also using Rich for the first time; previously, I used Colorama if I wanted to add color to the black and white console window.
+The terminal looks usually boring, but **using the Rich Python library** can enhance the experience. By the way, I am also using Rich for the first time; previously, I used **Colorama** to colorize the black and white console window.
 
 ### What is Sandbox?
 
-Sandbox originally refers to a safe playground for children. The technical concept is to provide a safe environment by evaluating code without the risk of prompt injection coming from outside the sandbox.
+Sandbox originally refers to a safe playground for children, yet the technical concept is to provide a safe environment by evaluating code without the risk of prompt injection.
 
 ### Setting up E2B Sandbox
 
@@ -43,3 +43,9 @@ pip install e2b-code-interpreter==1.2.0b5
 |  |- main.py
 |  |- utils.py
 ```
+#### Code
+
+### [gist: main.py](https://gist.github.com/grbeno/a3e3309144ddfeae40ee076822a90af9#main)
+
+### [gist: utils.py](https://gist.github.com/grbeno/5adf143964c7ea422a8d080af503d27c#utils)
+---
