@@ -1,8 +1,16 @@
 ---
 layout: default
 ---
+## [Create exe from Python code](./pages/autopytoexe.md)
+2025.10.06
+
+An example how to create an exe from a python application.
+
+`Python` `Pyinstaller` `Auto-py-to-exe`
+
 ---
 ## [Executing Code in E2B Sandbox](./pages/e2b_example.md)
+2025.07.03
 
 An example application running in the console using E2B to execute Claude model-generated code and the yfinance library to fetch information about stocks.
 
@@ -10,6 +18,7 @@ An example application running in the console using E2B to execute Claude model-
 
 ---
 ## [Deploying Django Project Using both ASGI and WSGI](./pages/dj_deploy_asgi_wsgi.md)
+2025.01.29
 
 Deploying a web application based on the previous two that has both ASGI and WSGI applications.
 
@@ -17,6 +26,7 @@ Deploying a web application based on the previous two that has both ASGI and WSG
 
 ---
 ## [Deploying Async LLM-Chat with Message History](./pages/dj_async_chat.md)
+2025.01.27
 
 Deploying a real-time AI chat application using Channels and WebSockets, with Redis as the channel layer for message history.
 
@@ -24,6 +34,7 @@ Deploying a real-time AI chat application using Channels and WebSockets, with Re
 
 ---
 ## [Integrating LLM Using API to a Django and React App](./pages/dj_llmlang.md)
+2025.01.26
 
 A web application that consumes an LLM API to implement a language AI assistant, which helps with English correction and translation.
 
@@ -31,6 +42,7 @@ A web application that consumes an LLM API to implement a language AI assistant,
 
 ---
 ## [Deployment](./pages/dj_deployment.md)
+2024.06.23
 
 Deploying a Django application can seem daunting, but it's an essential step to make your project accessible to users worldwide. The easiest solutions here.
 
@@ -38,6 +50,7 @@ Deploying a Django application can seem daunting, but it's an essential step to 
 
 ---
 ## [Adding React to Django](./pages/dj_react_frontend.md)
+2024.06.23
 
  This combination offers an improved user experience compared to traditional Django templates, allowing for smoother interactions and a more modern web application feel.
 
@@ -45,6 +58,7 @@ Deploying a Django application can seem daunting, but it's an essential step to 
 
 ---
 ## [Custom User Model](./pages/dj_customuser.md)
+2024.06.23
 
 Creating a custom user model in Django is a crucial step for developers who need to extend the default user functionalities to fit their application's unique requirements.
 
@@ -52,6 +66,7 @@ Creating a custom user model in Django is a crucial step for developers who need
 
 ---
 ## [Installation and Setting Up](./pages/dj_installation.md)
+2024.06.23
 
 Getting started with Django, a popular Python web framework, is essential for developing high-performance web applications.
 
