@@ -21,8 +21,8 @@ __* Issue__: I have an algorithm that is for a specific role. This algorithm is 
 - Copy the `requirements.txt` from the application's folder.
 
 - Update the dependencies with auto-py-to-exe
-    - add manually / `pip freeze > requirements.txt`
-
+    - add manually or
+    - $ `pip freeze > requirements.txt`
 
 - Install all dependencies
 
@@ -40,11 +40,11 @@ __* Issue__: I have an algorithm that is for a specific role. This algorithm is 
 5. __Additional Files__
     - Add the folders/files that are dependent on the application/project.
     - After the compilation you should delete the source code and other copyright content. The .pyc (compiled Python) files will be generated for the desktop application after execution. 
-6. You can set the project name path & __Advanced/General Options/__ _*--name --contents-directory*_
+6. You can set the project name path & __Advanced/General Options/__ *--name --contents-directory*
 
 #### Software info, rights
 
-__Advanced/Windows specific options/__ _*--version-file*_
+__Advanced/Windows specific options/__ *--version-file*
 
 `version.txt`
 ```
