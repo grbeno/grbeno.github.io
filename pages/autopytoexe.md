@@ -20,13 +20,12 @@ __* Issue__: I have an algorithm that is for a specific role. This algorithm is 
     $ `pip install auto-py-to-exe`
 - Copy the `requirements.txt` from the application's folder.
 
-- Update the dependencies with auto-py-to-exe
-    - add manually or
-    - $ `pip freeze > requirements.txt`
+- Update with auto-py-to-exe and install the dependencies
 
-- Install all dependencies
+  $ `pip freeze > requirements.txt`
+  
+  $ `pip install -r requirements.txt`
 
-    $ `pip install -r requirements.txt`
 - Run Auto-py-to-exe
 
     $ `auto-py-to-exe`
