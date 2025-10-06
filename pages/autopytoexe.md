@@ -53,7 +53,7 @@ __* Issue__: I have an algorithm that is for a specific role. This algorithm is 
 5. __Additional Files__
     - Add the folders/files that are dependent on the application/project.
     - After the compilation you should delete the source code and other copyright content. The .pyc (compiled Python) files will be generated for the desktop application after execution. 
-6. You can set the project name & contents place __Advanced/General Options/__ *--name --contents-directory*
+6. You can set the project name & contents place: __Advanced/General Options/__ *--name --contents-directory*
 
 #### Software info, rights
 
@@ -91,6 +91,6 @@ VSVersionInfo(
   ]
 )
 ```
-The last step: 
+#### The last step
 
 CONVERT .PY TO .EXE
