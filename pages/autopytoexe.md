@@ -20,10 +20,10 @@ __* Issue__: I have an algorithm that is for a specific role. This algorithm is 
   .venv\scripts\activate
   ```
 
-- Install Auto-py-to-exe
+- Install Auto-py-to-exe & Pyinstaller
 
   ```
-  pip install auto-py-to-exe
+  pip install auto-py-to-exe pyinstaller
   ```
 
 - Copy the `requirements.txt` from the application's folder.
