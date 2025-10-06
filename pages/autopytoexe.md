@@ -12,23 +12,37 @@ __* Issue__: I have an algorithm that is for a specific role. This algorithm is 
 
 - Create a folder then set an environment using venv: 
 
-  $ `python -m venv .venv`
+  ```
+  python -m venv .venv
+  ```
 
-  $ `.venv\scripts\activate`
+  ```
+  .venv\scripts\activate
+  ```
+
 - Install Auto-py-to-exe
 
-    $ `pip install auto-py-to-exe`
+  ```
+  pip install auto-py-to-exe
+  ```
+
 - Copy the `requirements.txt` from the application's folder.
 
 - Update with auto-py-to-exe and install the dependencies
 
-  $ `pip freeze > requirements.txt`
+  ```
+  pip freeze > requirements.txt
+  ```
   
-  $ `pip install -r requirements.txt`
+  ```
+  pip install -r requirements.txt
+  ```
 
 - Run Auto-py-to-exe
 
-    $ `auto-py-to-exe`
+  ```
+  auto-py-to-exe
+  ```
 
 #### Use the GUI:
 
