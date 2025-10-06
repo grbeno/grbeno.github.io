@@ -19,26 +19,32 @@ __* Issue__: I have an algorithm that is for a specific role. This algorithm is 
 
     $ `pip install auto-py-to-exe`
 - Copy the `requirements.txt` from the application's folder.
+
 - Update the dependencies with auto-py-to-exe
     - add manually / `pip freeze > requirements.txt`
+
 - Install all dependencies
 
     $ `pip install -r requirements.txt`
 - Run Auto-py-to-exe
 
-    $ `run auto-py-to-exe`
+    $ `auto-py-to-exe`
 
 #### Use the GUI:
 
-1. Add __Script Location__ ( main script to run [ main.py ] )
-2. Select __One directory__
+1. Add __Script Location__ ( browse for a script [ main.py ] )
+2. Select __One Directory__
 3. Select __Console Based__ (I don't use windows/forms/panels in this case)
-4. __Additional Files__
+4. Add __Icon__ if you have one
+5. __Additional Files__
     - Add the folders/files that are dependent on the application/project.
     - After the compilation you should delete the source code and other copyright content. The .pyc (compiled Python) files will be generated for the desktop application after execution. 
-5. You can set the project name path & __Advanced__/General/Option/contents-directory - custom name: my_app (e.g.)
+6. You can set the project name path & __Advanced/General Options/__ --name --contents-directory
 
 #### Software info, rights
+
+7. __Advanced/Windows specific options/__ --version-file
+
 `version.txt`
 ```
 # UTF-8
@@ -71,3 +77,6 @@ VSVersionInfo(
   ]
 )
 ```
+The last step: 
+
+CONVERT .PY TO .EXE
