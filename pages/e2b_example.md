@@ -48,4 +48,3 @@ pip install e2b-code-interpreter==1.2.0b5
 ### [gist: main.py](https://gist.github.com/grbeno/a3e3309144ddfeae40ee076822a90af9#main)
 
 ### [gist: utils.py](https://gist.github.com/grbeno/5adf143964c7ea422a8d080af503d27c#utils)
----
