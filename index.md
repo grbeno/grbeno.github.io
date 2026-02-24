@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 ## [Create exe from Python code](./pages/autopytoexe.md)
 
 This is an example of how to create an exe from a Python application.
