@@ -23,16 +23,40 @@ a {
 
 }
 
-.highlight .c1 {
-    color: #1a855f;
+.highlight .c .c1 {
+    color: #309974;
 }
 
 .highlight .bp {
-    color: #153dd7;
+    color: #2e98c3;
 }
 
-.highlight .nc {
-    color: #102565;
+.highlight .nf .nc .nt .ow {
+    color: #ede3e3;
+}
+
+.highlight .nb {
+    color: #27bcd5;
+}
+
+.highlight .nn {
+    color: #4184b9;
+}
+
+.highlight .n .o {
+    color: #4184b9;
+}
+
+.highlight .k {
+    color: #c75a5a;
+}
+
+.highlight .kn {
+    color: #d55151;
+}
+
+.highlight .s .s1 {
+    color: #d1a56b;
 }
 
 .main-content pre {
@@ -55,5 +79,5 @@ a {
 .main-content h5, 
 .main-content h6
 {
-    color: #8fcdae;
+    color: #dbdaaf;
 }
