@@ -2,3 +2,19 @@
 ---
 
 @import "{{ site.theme }}";
+
+body {
+    color: #c8cacb;
+    background-color: #081016;
+}
+
+.page-header {
+    background-image: none;
+    background-color: #193353;
+}
+
+.main-content code {
+    background-color: #14253d;
+    color: #d8ecf5;
+
+}
