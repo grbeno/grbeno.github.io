@@ -26,3 +26,8 @@ body {
 .main-content pre>code {
     color: #010712;
 }
+
+/* Elrejtjük csak azt az elválasztót, amelyikhez a 'no-show' osztályt adtuk */
+.main-content hr.no-show {
+    display: none;
+}

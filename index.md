@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+<hr class="no-show" />
 
 ## [Create exe from Python code](./pages/autopytoexe.md)
 
