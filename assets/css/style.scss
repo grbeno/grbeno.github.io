@@ -23,6 +23,18 @@ a {
 
 }
 
+.highlight .c1 {
+    color: #1a855f;
+}
+
+.highlight .bp {
+    color: #153dd7;
+}
+
+.highlight .nc {
+    color: #102565;
+}
+
 .main-content pre {
     background-color: #e5f5ff;
 }
@@ -34,4 +46,14 @@ a {
 /* Elrejtjük csak azt az elválasztót, amelyikhez a 'no-show' osztályt adtuk */
 .main-content hr.no-show {
     display: none;
+}
+
+.main-content h1, 
+.main-content h2, 
+.main-content h3, 
+.main-content h4, 
+.main-content h5, 
+.main-content h6
+{
+    color: #8fcdae;
 }
