@@ -25,9 +25,12 @@ a {
 
 .main-content .highlight {
     border: transparent;
+    background-color: #0b202d;
+    border-radius: 30px;
 }
 
-.main-content .highlight .c .c1 {
+.main-content .highlight .c 
+.main-content .highlight .c1 {
     color: #309974;
 }
 
@@ -35,7 +38,10 @@ a {
     color: #2e98c3;
 }
 
-.main-content .highlight .nf .nc .nt .ow {
+.main-content .highlight .nf
+.main-content .highlight .nc 
+.main-content .highlight .nt 
+.main-content .highlight .ow {
     color: #ede3e3;
 }
 
@@ -47,7 +53,8 @@ a {
     color: #4184b9;
 }
 
-.main-content .highlight .n .o {
+.main-content .highlight .n 
+.main-content .highlight .o {
     color: #4184b9;
 }
 
@@ -59,7 +66,8 @@ a {
     color: #d55151;
 }
 
-.main-content .highlight .s .s1 {
+.main-content .highlight .s 
+.main-content .highlight .s1 {
     color: #d1a56b;
 }
 
