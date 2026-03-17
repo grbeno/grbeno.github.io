@@ -15,8 +15,6 @@ We also need a ticker list to parse Yahoo Finance data and fetch the beta value.
 ```python
 # 1. Using loop for fetching information
 
-# Ticker list
-
 # Get US stock tickers from SEC data
 def get_us_sec_tickers() -> list:
     """ Returns a list of US stock tickers from SEC data. """ 
@@ -96,7 +94,7 @@ Threading is a way to speed up the response time. After clearing the cache to av
 Here’s how it looks.
 
 ```python
-# Using threads for fetching data
+# 2. Using threads for fetching data
 
 def clear_yfinance_cache() -> None:
     """
@@ -125,12 +123,6 @@ def main():
             results.append(future.result())
     
     print(f"Valid tickers: {len([r for r in results if r is not None])}")
-
-    if error_types:
-        if "rate_limit" in error_types:
-            print("Warning: some tickers were skipped due to rate limiting.")
-        if "other" in error_types:
-            print("Warning: some tickers failed due to other errors.")
 ```
 
 Run it exactly as in the looping test.
