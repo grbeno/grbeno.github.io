@@ -2,7 +2,15 @@
 layout: default
 ---
 <hr class="no-show" />
+## [Fetching Data Using Threading](./pages/threading.md)
 
+This is an example of how to fetch data using threading instead of the classic loop-based approach.
+
+`Python` `threading` `yfinance`
+
+2026.03.17
+
+---
 ## [Create exe from Python code](./pages/autopytoexe.md)
 
 This is an example of how to create an exe from a Python application.
