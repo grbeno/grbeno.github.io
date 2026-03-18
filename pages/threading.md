@@ -1,10 +1,12 @@
 ## Fetching Data Using Threading
 
-### The use case
+### About the use case
 
-We need to retrieve data using yfinance, but the response time is usually slow. Using a simple loop to fetch information for a large number of tickers doesn’t seem very efficient.
+We need to retrieve data using yfinance, but the response time is usually slow. Using a simple loop to fetch information for a large number of tickers doesn’t seem very efficient. A faster approach is needed here, and the threading technique could be a solution. Consider this if the order of the queried symbols does not matter.
 
-### Using a loop
+First, we check how looping through the data works.
+
+### 1. Using a loop
 
 Looping is a basic solution that works in some cases. The snippet below shows how long the server takes to respond when a loop is applied.
 
@@ -30,7 +32,7 @@ def get_us_sec_tickers() -> list:
     return result
 ```
 
-Handling internal errors through exception handling and retrieving the tickers’ beta values:
+Handling internal errors through incomplete exception handling and retrieving the tickers’ beta values. To make the exception handling complete, consider rate-limit errors and other internal issues:
 
 ```python
 def process_ticker(ticker):
@@ -43,7 +45,7 @@ def process_ticker(ticker):
         return None
 ```
 
-Here is the for loop that parses the first 200 ticker symbols from the SEC and retrieves their beta values from Yahoo Finance:
+Here is the for loop that parses the first 200 ticker symbols from the SEC endpoint and retrieves their beta values from Yahoo Finance:
 
 ```python
 LIMIT = 200  # Limit to first N tickers for testing
@@ -87,7 +89,7 @@ Valid tickers: 193
 Total elapsed time: 87.27 seconds
 ```
 
-### Using threading
+### 2. Threading
 
 Threading is a way to speed up the response time. After clearing the cache to avoid triggering internal yfinance issues, it is important to configure the number of workers (threads) for concurrent processing.
 
